@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" />
+  <xs:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="SystemCatalogResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q1:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SystemCatalog" nillable="true" type="tns:ArrayOfSystemCatalogDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SystemCatalogResult" nillable="true" type="tns:SystemCatalogResult" />
+  <xs:complexType name="ArrayOfSystemCatalogDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SystemCatalogDescription" nillable="true" type="tns:SystemCatalogDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSystemCatalogDescription" nillable="true" type="tns:ArrayOfSystemCatalogDescription" />
+  <xs:complexType name="SystemCatalogDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsUII" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UIICode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SystemCatalogDescription" nillable="true" type="tns:SystemCatalogDescription" />
+  <xs:complexType name="ComponentCatalogResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q2:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ComponentCatalog" nillable="true" type="tns:ArrayOfComponentCatalogDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentCatalogResult" nillable="true" type="tns:ComponentCatalogResult" />
+  <xs:complexType name="ArrayOfComponentCatalogDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentCatalogDescription" nillable="true" type="tns:ComponentCatalogDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentCatalogDescription" nillable="true" type="tns:ArrayOfComponentCatalogDescription" />
+  <xs:complexType name="ComponentCatalogDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEquip" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUII" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SysId" type="xs:int" />
+      <xs:element minOccurs="0" name="UIICode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentCatalogDescription" nillable="true" type="tns:ComponentCatalogDescription" />
+  <xs:complexType name="CMCResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q3:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CMCCatalog" nillable="true" type="tns:ArrayOfCMCDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CMCResult" nillable="true" type="tns:CMCResult" />
+  <xs:complexType name="ArrayOfCMCDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CMCDescription" nillable="true" type="tns:CMCDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCMCDescription" nillable="true" type="tns:ArrayOfCMCDescription" />
+  <xs:complexType name="CMCDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdjFactor" type="xs:float" />
+      <xs:element minOccurs="0" name="CII" type="xs:float" />
+      <xs:element minOccurs="0" name="CIISetLink" type="ser:guid" />
+      <xs:element minOccurs="0" name="CTypeLink" type="xs:int" />
+      <xs:element minOccurs="0" name="CompLink" type="xs:int" />
+      <xs:element minOccurs="0" name="CompUIILink" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="MCatLink" type="xs:int" />
+      <xs:element minOccurs="0" name="TaskListLink" type="xs:int" />
+      <xs:element minOccurs="0" name="UoM" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAltDesc" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CMCDescription" nillable="true" type="tns:CMCDescription" />
+  <xs:complexType name="MaterialCategoryCatalogResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q4:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MatCatCatalog" nillable="true" type="tns:ArrayOfMaterialCategoryDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MaterialCategoryCatalogResult" nillable="true" type="tns:MaterialCategoryCatalogResult" />
+  <xs:complexType name="ArrayOfMaterialCategoryDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialCategoryDescription" nillable="true" type="tns:MaterialCategoryDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialCategoryDescription" nillable="true" type="tns:ArrayOfMaterialCategoryDescription" />
+  <xs:complexType name="MaterialCategoryDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CatDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialCategoryDescription" nillable="true" type="tns:MaterialCategoryDescription" />
+  <xs:complexType name="ComponentTypeCatalogResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q5:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompTypeCatalog" nillable="true" type="tns:ArrayOfComponentTypeDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentTypeCatalogResult" nillable="true" type="tns:ComponentTypeCatalogResult" />
+  <xs:complexType name="ArrayOfComponentTypeDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentTypeDescription" nillable="true" type="tns:ComponentTypeDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentTypeDescription" nillable="true" type="tns:ArrayOfComponentTypeDescription" />
+  <xs:complexType name="ComponentTypeDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentTypeDescription" nillable="true" type="tns:ComponentTypeDescription" />
+  <xs:complexType name="SubComponentCatalogResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" base="q6:FunctionResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubCompCatalog" nillable="true" type="tns:ArrayOfSubComponentDescription" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SubComponentCatalogResult" nillable="true" type="tns:SubComponentCatalogResult" />
+  <xs:complexType name="ArrayOfSubComponentDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubComponentDescription" nillable="true" type="tns:SubComponentDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubComponentDescription" nillable="true" type="tns:ArrayOfSubComponentDescription" />
+  <xs:complexType name="SubComponentDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompUnitsID" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubComponentDescription" nillable="true" type="tns:SubComponentDescription" />
+</xs:schema>

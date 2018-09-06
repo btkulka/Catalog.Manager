@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cccbf475-fdd6-412b-b766-fc641893e7dd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost:44332/webservice/CatalogManager.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CatalogManager.wsdl" MetadataType="Wsdl" ID="eaff93ca-fc07-4991-b530-b03b0330b094" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?wsdl" />
+    <MetadataFile FileName="CatalogManager.disco" MetadataType="Disco" ID="c8106408-1416-4778-91d2-e883af8e5d7c" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?disco" />
+    <MetadataFile FileName="CatalogManager.xsd" MetadataType="Schema" ID="99ef721b-a590-439a-8023-c041500ae4f9" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd3" />
+    <MetadataFile FileName="CatalogManager1.xsd" MetadataType="Schema" ID="d6b61a31-a806-40db-b9ef-c51288d48df2" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd2" />
+    <MetadataFile FileName="CatalogManager2.xsd" MetadataType="Schema" ID="6b253a25-2510-44e5-a76a-53a7216563e2" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd1" />
+    <MetadataFile FileName="CatalogManager3.xsd" MetadataType="Schema" ID="471bf472-acb7-48b2-99cd-84322a02e2cf" SourceId="1" SourceUrl="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

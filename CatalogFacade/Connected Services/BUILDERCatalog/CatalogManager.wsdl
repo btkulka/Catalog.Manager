@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CatalogManager" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="wsHttpBinding_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="basicHttpBindingConfiguration_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" />
+      <xsd:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICatalog_CreateCatalogSystem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogSystem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogSystem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSystems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSystems" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSystems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSystem_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSystem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSystem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogSystem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogSystem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogSystem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogSystem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogSystem" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogSystem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponents" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCMC_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCMC" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCMC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCMCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetAllCMC_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCMC" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetAllCMC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCMCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCMC_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCMC" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCMC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCMCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCMC_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCMC" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCMC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCMCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCMC_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCMC" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCMC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCMCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogMaterialCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogMaterialCategory" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogMaterialCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogMaterialCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogMaterialCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogMaterialCategories" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogMaterialCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogMaterialCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogMaterialCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogMaterialCategory" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogMaterialCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogMaterialCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogMaterialCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogMaterialCategory" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogMaterialCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogMaterialCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogMaterialCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogMaterialCategory" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogMaterialCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogMaterialCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogComponentType_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogComponentType" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogComponentType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogComponentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponentTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentTypes" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponentTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponentType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentType" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogComponentType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogComponentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogComponentType_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogComponentType" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogComponentType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogComponentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogComponentType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogComponentType" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogComponentType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogComponentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogSubComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogSubComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_CreateCatalogSubComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCatalogSubComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSubComponents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSubComponents" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSubComponents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSubComponentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSubComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSubComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_GetCatalogSubComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCatalogSubComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogSubComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogSubComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_UpdateCatalogSubComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCatalogSubComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogSubComponent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogSubComponent" />
+  </wsdl:message>
+  <wsdl:message name="ICatalog_DeleteCatalogSubComponent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCatalogSubComponentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICatalog">
+    <wsdl:operation name="CreateCatalogSystem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogSystem" message="tns:ICatalog_CreateCatalogSystem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogSystemResponse" message="tns:ICatalog_CreateCatalogSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSystems" message="tns:ICatalog_GetCatalogSystems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSystemsResponse" message="tns:ICatalog_GetCatalogSystems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSystem" message="tns:ICatalog_GetCatalogSystem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSystemResponse" message="tns:ICatalog_GetCatalogSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSystem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogSystem" message="tns:ICatalog_UpdateCatalogSystem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogSystemResponse" message="tns:ICatalog_UpdateCatalogSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSystem">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogSystem" message="tns:ICatalog_DeleteCatalogSystem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogSystemResponse" message="tns:ICatalog_DeleteCatalogSystem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogComponent" message="tns:ICatalog_CreateCatalogComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogComponentResponse" message="tns:ICatalog_CreateCatalogComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponents" message="tns:ICatalog_GetCatalogComponents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentsResponse" message="tns:ICatalog_GetCatalogComponents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponent" message="tns:ICatalog_GetCatalogComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentResponse" message="tns:ICatalog_GetCatalogComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogComponent" message="tns:ICatalog_UpdateCatalogComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogComponentResponse" message="tns:ICatalog_UpdateCatalogComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogComponent" message="tns:ICatalog_DeleteCatalogComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogComponentResponse" message="tns:ICatalog_DeleteCatalogComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCMC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCMC" message="tns:ICatalog_CreateCMC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCMCResponse" message="tns:ICatalog_CreateCMC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCMC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetAllCMC" message="tns:ICatalog_GetAllCMC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetAllCMCResponse" message="tns:ICatalog_GetAllCMC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCMC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCMC" message="tns:ICatalog_GetCMC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCMCResponse" message="tns:ICatalog_GetCMC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCMC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCMC" message="tns:ICatalog_UpdateCMC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCMCResponse" message="tns:ICatalog_UpdateCMC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCMC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCMC" message="tns:ICatalog_DeleteCMC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCMCResponse" message="tns:ICatalog_DeleteCMC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogMaterialCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogMaterialCategory" message="tns:ICatalog_CreateCatalogMaterialCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogMaterialCategoryResponse" message="tns:ICatalog_CreateCatalogMaterialCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategories" message="tns:ICatalog_GetCatalogMaterialCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategoriesResponse" message="tns:ICatalog_GetCatalogMaterialCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategory" message="tns:ICatalog_GetCatalogMaterialCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategoryResponse" message="tns:ICatalog_GetCatalogMaterialCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogMaterialCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategory" message="tns:ICatalog_UpdateCatalogMaterialCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategoryResponse" message="tns:ICatalog_UpdateCatalogMaterialCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogMaterialCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategory" message="tns:ICatalog_DeleteCatalogMaterialCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategoryResponse" message="tns:ICatalog_DeleteCatalogMaterialCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponentType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogComponentType" message="tns:ICatalog_CreateCatalogComponentType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogComponentTypeResponse" message="tns:ICatalog_CreateCatalogComponentType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentTypes" message="tns:ICatalog_GetCatalogComponentTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentTypesResponse" message="tns:ICatalog_GetCatalogComponentTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentType" message="tns:ICatalog_GetCatalogComponentType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogComponentTypeResponse" message="tns:ICatalog_GetCatalogComponentType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponentType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogComponentType" message="tns:ICatalog_UpdateCatalogComponentType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogComponentTypeResponse" message="tns:ICatalog_UpdateCatalogComponentType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponentType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogComponentType" message="tns:ICatalog_DeleteCatalogComponentType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogComponentTypeResponse" message="tns:ICatalog_DeleteCatalogComponentType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogSubComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogSubComponent" message="tns:ICatalog_CreateCatalogSubComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/CreateCatalogSubComponentResponse" message="tns:ICatalog_CreateCatalogSubComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSubComponents" message="tns:ICatalog_GetCatalogSubComponents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSubComponentsResponse" message="tns:ICatalog_GetCatalogSubComponents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSubComponent" message="tns:ICatalog_GetCatalogSubComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/GetCatalogSubComponentResponse" message="tns:ICatalog_GetCatalogSubComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSubComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogSubComponent" message="tns:ICatalog_UpdateCatalogSubComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/UpdateCatalogSubComponentResponse" message="tns:ICatalog_UpdateCatalogSubComponent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSubComponent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogSubComponent" message="tns:ICatalog_DeleteCatalogSubComponent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalog/DeleteCatalogSubComponentResponse" message="tns:ICatalog_DeleteCatalogSubComponent_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsHttpBinding" type="tns:ICatalog">
+    <wsp:PolicyReference URI="#wsHttpBinding_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCatalogSystem">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystems">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystem">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSystem">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSystem">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponents">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCMC">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCMC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCMC">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetAllCMC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCMC">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCMC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCMC">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCMC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCMC">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCMC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogMaterialCategory">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategories">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategory">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogMaterialCategory">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogMaterialCategory">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponentType">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentTypes">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponentTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentType">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponentType">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponentType">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogSubComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponents">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSubComponents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSubComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSubComponent">
+      <soap12:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="basicHttpBindingConfiguration" type="tns:ICatalog">
+    <wsp:PolicyReference URI="#basicHttpBindingConfiguration_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCatalogSystem">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystems">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSystem">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSystem">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSystem">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponents">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCMC">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCMC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCMC">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetAllCMC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCMC">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCMC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCMC">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCMC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCMC">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCMC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogMaterialCategory">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategories">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogMaterialCategory">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogMaterialCategory">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogMaterialCategory">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogComponentType">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentTypes">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponentTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogComponentType">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogComponentType">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogComponentType">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogComponentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCatalogSubComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/CreateCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponents">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSubComponents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogSubComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/GetCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCatalogSubComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/UpdateCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCatalogSubComponent">
+      <soap:operation soapAction="http://tempuri.org/ICatalog/DeleteCatalogSubComponent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CatalogManager">
+    <wsdl:port name="wsHttpBinding" binding="tns:wsHttpBinding">
+      <soap12:address location="https://localhost:44332/webservice/CatalogManager.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost:44332/webservice/CatalogManager.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="basicHttpBindingConfiguration" binding="tns:basicHttpBindingConfiguration">
+      <soap:address location="https://localhost:44332/webservice/CatalogManager.svc/silverlight" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

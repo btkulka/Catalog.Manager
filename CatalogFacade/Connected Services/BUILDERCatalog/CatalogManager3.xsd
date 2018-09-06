@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" />
+  <xs:import schemaLocation="https://localhost:44332/webservice/CatalogManager.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" />
+  <xs:element name="CreateCatalogSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q1:guid" />
+        <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uiicode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isUII" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogSystemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCatalogSystemResult" nillable="true" type="q2:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSystems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q3:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSystemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogSystemsResult" nillable="true" type="q4:SystemCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q5:guid" />
+        <xs:element minOccurs="0" name="sysId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSystemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogSystemResult" nillable="true" type="q6:SystemCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q7:guid" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="sysUpdates" nillable="true" type="q8:SystemCatalogDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogSystemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCatalogSystemResult" type="q9:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q10:guid" />
+        <xs:element minOccurs="0" name="sysId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogSystemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCatalogSystemResult" type="q11:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q12:guid" />
+        <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sysLink" type="xs:int" />
+        <xs:element minOccurs="0" name="isUII" type="xs:boolean" />
+        <xs:element minOccurs="0" name="UIICode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isEquip" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCatalogComponentResult" nillable="true" type="q13:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q14:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogComponentsResult" nillable="true" type="q15:ComponentCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q16:guid" />
+        <xs:element minOccurs="0" name="compId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogComponentResult" nillable="true" type="q17:ComponentCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q18:guid" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="compUpdates" nillable="true" type="q19:ComponentCatalogDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCatalogComponentResult" type="q20:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q21:guid" />
+        <xs:element minOccurs="0" name="compId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCatalogComponentResult" type="q22:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCMC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q23:guid" />
+        <xs:element minOccurs="0" name="CompLink" type="xs:int" />
+        <xs:element minOccurs="0" name="MatCatLink" type="xs:int" />
+        <xs:element minOccurs="0" name="CompType" type="xs:int" />
+        <xs:element minOccurs="0" name="UoM" type="xs:int" />
+        <xs:element minOccurs="0" name="UIILink" type="xs:int" />
+        <xs:element minOccurs="0" name="AdjFactor" type="xs:float" />
+        <xs:element minOccurs="0" name="CII" type="xs:float" />
+        <xs:element minOccurs="0" name="UseAltDesc" type="xs:int" />
+        <xs:element minOccurs="0" name="TaskListLink" type="xs:int" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CIISetLink" type="q24:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCMCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCMCResult" nillable="true" type="q25:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCMC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q26:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllCMCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetAllCMCResult" nillable="true" type="q27:CMCResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCMC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q28:guid" />
+        <xs:element minOccurs="0" name="CMCID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCMCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCMCResult" nillable="true" type="q29:CMCResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCMC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q30:guid" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="cmcUpdates" nillable="true" type="q31:CMCDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCMCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCMCResult" type="q32:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCMC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q33:guid" />
+        <xs:element minOccurs="0" name="CMCID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCMCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCMCResult" type="q34:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogMaterialCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q35:guid" />
+        <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogMaterialCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCatalogMaterialCategoryResult" nillable="true" type="q36:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogMaterialCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q37:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogMaterialCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogMaterialCategoriesResult" nillable="true" type="q38:MaterialCategoryCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogMaterialCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q39:guid" />
+        <xs:element minOccurs="0" name="matCatId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogMaterialCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogMaterialCategoryResult" nillable="true" type="q40:MaterialCategoryCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogMaterialCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q41:guid" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="matCatUpdates" nillable="true" type="q42:MaterialCategoryDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogMaterialCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCatalogMaterialCategoryResult" type="q43:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogMaterialCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q44:guid" />
+        <xs:element minOccurs="0" name="matCatId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogMaterialCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCatalogMaterialCategoryResult" type="q45:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogComponentType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q46:guid" />
+        <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogComponentTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCatalogComponentTypeResult" nillable="true" type="q47:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q48:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogComponentTypesResult" nillable="true" type="q49:ComponentTypeCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q50:guid" />
+        <xs:element minOccurs="0" name="compTypeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogComponentTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogComponentTypeResult" nillable="true" type="q51:ComponentTypeCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogComponentType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q52:guid" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="compTypeUpdates" nillable="true" type="q53:ComponentTypeDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogComponentTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCatalogComponentTypeResult" type="q54:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogComponentType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q55:guid" />
+        <xs:element minOccurs="0" name="compTypeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogComponentTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCatalogComponentTypeResult" type="q56:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogSubComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q57:guid" />
+        <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unitID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCatalogSubComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="CreateCatalogSubComponentResult" nillable="true" type="q58:IntResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSubComponents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q59:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSubComponentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogSubComponentsResult" nillable="true" type="q60:SubComponentCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSubComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q61:guid" />
+        <xs:element minOccurs="0" name="subCompId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCatalogSubComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="GetCatalogSubComponentResult" nillable="true" type="q62:SubComponentCatalogResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogSubComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q63:guid" />
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Catalog" minOccurs="0" name="subCompUpdates" nillable="true" type="q64:SubComponentDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCatalogSubComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="UpdateCatalogSubComponentResult" type="q65:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogSubComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="SessionID" type="q66:guid" />
+        <xs:element minOccurs="0" name="subCompId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCatalogSubComponentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/ERDC.CERL.SMS.Libraries.DataContract.Common" minOccurs="0" name="DeleteCatalogSubComponentResult" type="q67:FunctionResultMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

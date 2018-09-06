@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99A4A43F-C2DD-4EBF-BE53-F9BBA4A22112}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Catalog.Facade</RootNamespace>
+    <AssemblyName>Catalog.Facade</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatalogFacade.cs" />
+    <Compile Include="CatalogItems\Create.cs" />
+    <Compile Include="CatalogItems\Delete.cs" />
+    <Compile Include="CatalogItems\Read.cs" />
+    <Compile Include="CatalogItems\Update.cs" />
+    <Compile Include="Components\Create.cs" />
+    <Compile Include="Components\Delete.cs" />
+    <Compile Include="Components\Read.cs" />
+    <Compile Include="Components\Update.cs" />
+    <Compile Include="ComponentTypes\Create.cs" />
+    <Compile Include="ComponentTypes\Delete.cs" />
+    <Compile Include="ComponentTypes\Read.cs" />
+    <Compile Include="ComponentTypes\Update.cs" />
+    <Compile Include="Connected Services\BUILDERCatalog\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialCategories\Create.cs" />
+    <Compile Include="MaterialCategories\Delete.cs" />
+    <Compile Include="MaterialCategories\Read.cs" />
+    <Compile Include="MaterialCategories\Update.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubComponents\Create.cs" />
+    <Compile Include="SubComponents\Delete.cs" />
+    <Compile Include="SubComponents\Read.cs" />
+    <Compile Include="SubComponents\Update.cs" />
+    <Compile Include="Systems\Create.cs" />
+    <Compile Include="Systems\Delete.cs" />
+    <Compile Include="Systems\Read.cs" />
+    <Compile Include="Systems\Update.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.CMCResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.ComponentCatalogResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.FunctionResultMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.IntResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.SystemCatalogResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager.wsdl" />
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CatalogData\CatalogData.csproj">
+      <Project>{e4879b65-3f5b-4698-9e4d-b3aa5854f554}</Project>
+      <Name>CatalogData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\BUILDERCatalog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BUILDERCatalog\CatalogManager.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BUILDERCatalog\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BUILDERCatalog\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BUILDERCatalog\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
