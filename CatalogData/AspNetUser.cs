@@ -19,6 +19,12 @@ namespace CatalogData
         {
             this.CatalogCredentials = new HashSet<CatalogCredential>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.CatalogItems = new HashSet<CatalogItem>();
+            this.CatalogSystems = new HashSet<CatalogSystem>();
+            this.Components = new HashSet<Component>();
+            this.ComponentTypes = new HashSet<ComponentType>();
+            this.MaterialCategories = new HashSet<MaterialCategory>();
+            this.SubComponents = new HashSet<SubComponent>();
         }
     
         public string Id { get; set; }
@@ -38,5 +44,17 @@ namespace CatalogData
         public virtual ICollection<CatalogCredential> CatalogCredentials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CatalogItem> CatalogItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CatalogSystem> CatalogSystems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Component> Components { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ComponentType> ComponentTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaterialCategory> MaterialCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubComponent> SubComponents { get; set; }
     }
 }

@@ -1,0 +1,137 @@
+﻿@model ManagerUI.Models.ItemIndexViewModel
+@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Catalog Item - " + Model.CatalogItem.CMCID;
+
+    CMEntities db = new CMEntities();
+}
+
+<script>
+    // On start
+    $(document).ready(function () {
+        EnableUiiCode();
+    });
+
+    function BackToCatalogItemsList() {
+        window.location.href = "@Url.Action("CatalogItemsList", "Catalog")";
+    }
+
+    function Deactivate(id) {
+        window.location.href = "@Url.Action("CatalogItems_Deactivate", "Catalog")" + "?cmcid=" + id;
+    }
+
+    function Restore(guid, id) {
+        window.location.href = "@Url.Action("CatalogItems_Restore", "Catalog")" + "?guid=" + guid + "&cmcid=" + id;
+    }
+
+    function EnableUiiCode() {
+        var checked = $("#chkIsUii").is(":checked");
+        $("#txtUiiCode").attr("disabled", !checked);
+    }
+
+</script>
+
+<div class="container m-3">
+    <div class="row">
+        <div class="col-2">
+            <button class="btn btn-outline-info m-3" onclick="BackToCatalogItemsList()" style="font-size:10px;">
+                <i class="fa fa-arrow-left"></i>&#9;Catalog Items List
+            </button>
+        </div>
+        <div class="col-8">
+            <div class="row m-3">
+                <div class="col-12">
+            @using (Html.BeginForm("CatalogItems_Edit", "Catalog", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m)
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h4>Item #@Model.CatalogItem.CMCID</h4>
+                            </div>
+                            <div class="col-2 justify-content-center">
+                                <div class="row justify-content-center">
+                                    <button type="submit" title="Save" class="btn btn-outline-success m-1"><i class="fa fa-save"></i></button>
+                                    <button type="button" onclick="Deactivate('@Model.CatalogItem.CMCID')" title="Deactivate" class="btn btn-outline-danger m-1"><i class="fa fa-minus-circle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="row">
+                                <h6>Component</h6>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Id</strong>
+                                </div>
+                                <div class="col-9">
+                                    @Model.CatalogItem.ComponentId
+                                </div>
+                                <div class="col-3">
+                                    <strong>Description</strong>
+                                </div>
+                                <div class="col-9">
+                                    @db.Components.Where(w => (bool)w.IsActive && w.ComponentId == Model.CatalogItem.ComponentId).FirstOrDefault().Description
+                                </div>
+                            </div>
+                        </div>                               
+                    }
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Catalog Item History</h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover" style="font-size: 10px;">
+                                <thead class="thead-dark">
+                                <th scope="col">SystemId</th>
+                                <th scope="col">System Description</th>
+                                <th scope="col">UII Code</th>
+                                <th scope="col">Is UII?</th>
+                                <th scope="col">Created By</th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Restore</th>
+                                </thead>
+                                <tbody>
+                                    @if (Model.History.Count() == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="7" style="text-align:center;">There are no previous states for this Catalog Item.</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        foreach (CatalogItem item in Model.History)
+                                        {
+                                            <tr>
+
+                                                <td><a href="@Url.Action("Index", "User", new { userId = item.AspNetUser.Id })">@item.AspNetUser.UserName</a></td>
+                                                <td>@item.CreationDate</td>
+                                                <td class="text-center"><a onclick="Restore('@item.Id', '@item.CMCID')" href="#"><i class="fa fa-hourglass" style="font-size:10px;"></i></a></td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-2">
+    </div>
+</div>
+

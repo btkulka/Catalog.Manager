@@ -1,34 +1,47 @@
-﻿using CatalogData.Exceptions;
+﻿using Catalog.Facade.BUILDERCatalog;
+using Catalog.Facade.Wrappers;
+using CatalogData.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CatalogFacade.Components
+namespace CatalogFacade
 {
     public partial class CatalogFacade
     {
         /*  NAME:   CreateCatalogComponent
          *  DESC:   Creates a new Catalog Component in the BUILDER database.
-         *  PARAMS: {0} description - a description of the system
-         *          {1} systemId - the component's parent system
-         *          {2} uiiCode - the uiiCode that identifies the system in the catalog
-         *          {3} isUII - indicates if the system is UII format
-         *          {4} isEquip - indicates if the system is Equipment
-         *  RETURN: The newly created Catalog System.
-         *  ERRORS: {0} CMBUILDERResponseException - BUILDER experienced an issue.
-         *          {1} CMCatalogFacadeException - an error occurred while attempting to make the call.
+         *  PARAMS: {0} desc - a ComponentDescription object that holds all required fields
+         *  RETURN: The newly created Catalog System in a wrapper to communicate Status.
         */
-        public void CreateCatalogSystems(string description, int systemId, string uiiCode, bool isUII, bool isEquip)
+        public WPRComponentDescription CreateCatalogComponents(ComponentCatalogDescription desc)
         {
+            WPRComponentDescription Return = (WPRComponentDescription)desc;
             try
             {
+                var cc = InitCatalogClient();
+                var result = cc.CreateCatalogComponent(desc.ID, desc.Description, desc.SysId, (bool)desc.IsUII, desc.UIICode, (bool)desc.IsEquip);
 
+                if(result.Status == FunctionResultMessage.Success)
+                {
+                    Return.StatusCode = "200";
+                    Return.StatusDetail = "Success";
+                }
+                else
+                {
+                    throw new CMBUILDERResponseException(String.Format("BUILDER was unable to create Catalog Component: {0}", result.Status.ToString()));
+                }
             }
             catch (Exception ex)
             {
                 if (!(ex is CMException))
-                    ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to create the given Component [Desc: {0}]: {1}", description, ex.Message), ex);
+                    ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to create the given Component [Desc: {0}]: {1}", desc.Description, ex.Message), ex);
+
+                Return.StatusCode = ((CMException)ex).ErrorCode;
+                Return.StatusDetail = ex.Message;
             }
+
+            return Return;
         }
     }
 }

@@ -1,0 +1,306 @@
+﻿@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Manage BUILDER Instances";
+}
+
+<script>
+
+    function DeleteInstance(id, name) {
+        var c = window.confirm("Are you sure you want to delete the BUILDER Instance '" + name + "'?");
+
+        if (c) {
+            window.location.href = "@Url.Action("BuilderInstances_Deactivate", "Application")?builderId=" + id;
+        }
+    }
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+            <div class="row m-3">
+                <div class="col-12 text-center">
+                    <h4>BUILDER Instances</h4>
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-center align-items-center">
+                @foreach (BUILDERInstance instance in (List<BUILDERInstance>)ViewBag.BUILDERInstances)
+                {
+                    <div class="modal fade" id="@instance.Id-modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                @using (Html.BeginForm("BuilderInstances_Update", "Application", FormMethod.Post))
+                                {
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><i class="fa fa-building"></i>&#9;@instance.Name Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @Html.Hidden("BuilderInstanceId", instance.Id)
+                                        <div class="row mt-2">
+                                            <div class="col-4">
+                                                <strong>Name</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                @Html.Editor("BuilderInstanceName", new { htmlAttributes = new { @class = "form-control", @Value = instance.Name } })
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-4">
+                                                <strong>Service Address</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                @Html.Editor("RemoteServiceAddress", new { htmlAttributes = new { @class = "form-control", @Value = instance.RemoteServiceAddress } })
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row m-3">
+                                            <h6>My BUILDER Credentials</h6>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-4">
+                                                <strong>Username</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                @Html.Editor("BuilderUsername", new { htmlAttributes = new { @class = "form-control", @Value = instance.CatalogCredentials.Where(w => w.AspNetUserId == ViewBag.UserId).FirstOrDefault().BuilderUn } })
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-4">
+                                                <strong>Password</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                @Html.Password("BuilderPassword", "", new { @class = "form-control", @Value = instance.CatalogCredentials.Where(w => w.AspNetUserId == ViewBag.UserId).FirstOrDefault().BuilderPw })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card m-2">
+                            <div class="card-header text-center">
+                                <h5>@instance.Name</h5>
+                                <p style="font-size:10px;">
+                                    @instance.RemoteServiceAddress
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row justify-content-center m-2 text-center">
+                                            <div class="col-12 justify-content-center">
+                                                <h1><i class="fa fa-building"></i></h1>
+                                                <p style="font-size: 10px;">
+                                                    <strong>Last Synced: </strong> @((instance.LastSynced == null) ? "Never" : instance.LastSynced.Value.ToShortDateString())
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-3">
+                                                @if (instance.Id != ViewBag.DefaultInstanceId)
+                                                {
+                                                    <a href="@Url.Action("BuilderInstances_Select", "Application", new { builderId = instance.Id })">
+                                                        <button class="btn btn-outline-success" title="Select">
+                                                            <i class="fa fa-check-circle"></i>
+                                                        </button>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn btn-success" title="Already Selected" disabled>
+                                                        <i class="fa fa-check-circle"></i>
+                                                    </button>
+                                                }
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-outline-info" title="Edit" data-toggle="modal" data-target="#@instance.Id-modal">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-3">
+                                                <a href="@Url.Action("Resync", "Catalog", new { builderId = instance.Id })">
+                                                    <button type="button" class="btn btn-outline-info" title="Resync">
+                                                        <i class="fa fa-refresh"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="col-3">
+                                                <button class="btn btn-outline-danger" title="Delete" onclick="DeleteInstance('@instance.Id', '@instance.Name')">
+                                                    <i class="fa fa-times-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                    <div class="col-4">
+                        @if (ViewBag.OtherInstances.Count > 0)
+                        {
+                        <div class="card m-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row justify-content-center m-2 text-center">
+                                            <div class="col-12 justify-content-center">
+                                                <h4>Link Existing Instance</h4>
+                                                <button type="button" class="btn btn-outline-info" title="Link Instance" data-toggle="modal" data-target="#linkBuilderInstance">
+                                                    <i class="fa fa-link"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        <div class="card m-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row justify-content-center m-2 text-center">
+                                            <div class="col-12 justify-content-center">
+                                                <h4>New Instance</h4>
+                                                <button type="button" class="btn btn-outline-info" title="New Instance" data-toggle="modal" data-target="#newBuilderInstance">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="linkBuilderInstance" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("BuilderInstances_Link", "Application", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa fa-building"></i>&#9;Link BUILDER Instance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Instance</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.DropDownList("BuilderInstanceId", (List<SelectListItem>)ViewBag.OtherInstances, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row m-3">
+                        <h6>My BUILDER Credentials</h6>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Username</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Editor("BuilderUsername", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Password</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Password("BuilderPassword", "", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-link"></i></button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newBuilderInstance" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("BuilderInstances_Create", "Application", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa fa-building"></i>&#9;New BUILDER Instance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Name</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Editor("BuilderInstanceName", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Service Address</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Editor("RemoteServiceAddress", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row m-3">
+                        <h6>My BUILDER Credentials</h6>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Username</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Editor("BuilderUsername", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4">
+                            <strong>Password</strong>
+                        </div>
+                        <div class="col-8">
+                            @Html.Password("BuilderPassword", "", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-plus-circle"></i></button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+        </div>
+</div>

@@ -11,12 +11,19 @@ namespace CatalogFacade
     public partial class CatalogFacade
     {
         public CatalogCredentials cred { get; set; }
-        public Guid SessionId { get; set; }
 
-        public Catalog.Facade.BUILDERCatalog.CatalogClient InitCatalogClient(CatalogCredentials cred)
+        public CatalogFacade(CatalogCredentials c)
+        {
+            this.cred = c;
+        }
+
+        public Catalog.Facade.BUILDERCatalog.CatalogClient InitCatalogClient()
         {
             Binding binding = new WSHttpBinding();
-            CatalogClient cc = new Catalog.Facade.BUILDERCatalog.CatalogClient("", cred.RemoteAddress);
+            CatalogClient cc = new Catalog.Facade.BUILDERCatalog.CatalogClient("wsHttpBinding", cred.RemoteAddress);
+            cc.ClientCredentials.UserName.UserName = cred.BUILDERUsername;
+            cc.ClientCredentials.UserName.Password = cred.BUILDERPassword;
+
             return cc;
         }
     }

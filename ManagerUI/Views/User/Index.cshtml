@@ -1,0 +1,47 @@
+﻿@model ManagerUI.Models.AspNetUserAccountViewModel
+@using ManagerUI.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "User " + Model.User.UserName;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fa fa-user-circle"></i>&#9;@Model.User.UserName</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2"><strong>Username:</strong></div>
+                                <div class="col-4">@Model.User.UserName</div>
+                                <div class="col-2"><strong>Email:</strong></div>
+                                <div class="col-4">@Model.User.Email</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Edit History</h6>
+                        </div>
+                        <div class="card-body">
+                            This feature is not yet implemented.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

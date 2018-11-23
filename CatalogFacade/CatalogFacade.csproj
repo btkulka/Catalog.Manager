@@ -86,9 +86,17 @@
     <Compile Include="Systems\Delete.cs" />
     <Compile Include="Systems\Read.cs" />
     <Compile Include="Systems\Update.cs" />
+    <Compile Include="Wrappers\WPRCMCDescription.cs" />
+    <Compile Include="Wrappers\WPRComponentDescription.cs" />
+    <Compile Include="Wrappers\WPRComponentTypeDescription.cs" />
+    <Compile Include="Wrappers\WPRMaterialCategoryDescription.cs" />
+    <Compile Include="Wrappers\WPRSubComponentDescription.cs" />
+    <Compile Include="Wrappers\WPRSystemDescription.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\BUILDERCatalog\Catalog.Facade.BUILDERCatalog.CMCResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -16,18 +16,29 @@ namespace CatalogFacade
          *  ERRORS: {0} CMBUILDERResponseException - BUILDER experienced an issue.
          *          {1} CMCatalogFacadeException - an error occurred while attempting to make the call.
         */
-        public void DeleteCatalogItem(int cmcId)
+        public bool DeleteCatalogItem(int cmcId)
         {
-            var cf = InitCatalogClient(this.cred);
+            var cf = InitCatalogClient();
             try
             {
                 // There is currently no return for Deletes
-                cf.DeleteCMC(this.SessionId, cmcId);
+                var result = cf.DeleteCMC(cmcId);
+
+                if(result == FunctionResultMessage.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new CMBUILDERResponseException(String.Format("BUILDER was unable to delete Catalog Item [ID: {0}]: {1}", cmcId, result.ToString()));
+                }
             }
             catch (Exception ex)
             {
                 if (!(ex is CMException))
                     ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to delete the given Catalog Item [Id: {0}]: {1}", cmcId, ex.Message), ex);
+
+                return false;
             }
         }
     }

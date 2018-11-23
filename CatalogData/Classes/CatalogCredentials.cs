@@ -11,5 +11,13 @@ namespace CatalogData.Classes
         public string RemoteAddress { get; set; }
         public string BUILDERUsername { get; set; }
         public string BUILDERPassword { get; set; }
+
+        // Basic Contrsuctor
+        public CatalogCredentials(string r, string un, string pw)
+        {
+            RemoteAddress = r;
+            BUILDERUsername = un;
+            BUILDERPassword = pw;
+        }
     }
 }

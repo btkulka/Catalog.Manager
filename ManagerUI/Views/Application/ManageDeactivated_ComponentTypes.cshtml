@@ -1,0 +1,106 @@
+﻿@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Manage Deactivated - Component Types";
+}
+
+<script>
+
+    function DeleteComponentType(compTypeId, desc) {
+        var c = confirm("Are you sure you want to delete '" + desc + "'?")
+        if (c) {
+            window.location.href = "@Url.Action("ComponentTypes_Delete", "ComponentTypes")?compTypeId=" + compTypeId;
+        }
+    }
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <div class="mt-3 row justify-content-center" style="font-size:12px;">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ManageDeactivated_CatalogItems", "Application")">Catalog Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ManageDeactivated_Systems", "Application")">Systems</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ManageDeactivated_Components", "Application")">Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ManageDeactivated_SubComponents", "Application")">SubComponents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Component Types</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ManageDeactivated_MaterialCategories", "Application")">Material Categories</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 m-2">
+                    <h4>Deactivated Component Types</h4>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-12">
+                    <table class="table table-striped table-hover" style="font-size:12px;">
+                        <thead class="thead-dark">
+                        <th>Id</th>
+                        <th>Description</th>
+                        <th>Restore</th>
+                        <th>Delete</th>
+                        </thead>
+                        <tbody>
+                            @if (((List<ComponentType>)ViewBag.DeactivatedComponentTypes).Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        There are currently no deactivated Component Types.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (ComponentType compType in ((List<ComponentType>)ViewBag.DeactivatedComponentTypes))
+                                {
+                                    <tr>
+                                        <td>
+                                            @compType.CompTypeId
+                                        </td>
+                                        <td>
+                                            @compType.CompTypeDescription
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("ComponentTypes_RestoreDeactivated", "ComponentTypes", new { compTypeId = compType.CompTypeId })">
+                                                <button class="btn btn-outline-success m-1">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-danger m-1" onclick="DeleteComponentType('@compType.CompTypeId', '@compType.CompTypeDescription')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+

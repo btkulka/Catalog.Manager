@@ -1,0 +1,124 @@
+﻿@model CatalogData.AspNetUser
+@using ManagerUI.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Account";
+}
+
+<script>
+    
+    function refresh() {
+        location.reload();
+    }
+
+
+</script>
+
+@if (User.Identity.IsAuthenticated && User.Identity.Name == Model.UserName) {
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="card m-3">
+                <div class="card-header">
+                    <h4>@Model.UserName Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            @Html.Label("Username")
+                        </div>
+                        <div class="col-9">
+                            @Model.UserName
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            @Html.Label("Password")
+                        </div>
+                        <div class="col-9">
+                            [<a href="@Url.Action("ResetPassword", "Account", new { userId = Model.Id })"> Change Password </a>]
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            @Html.LabelFor(m => m.Email)
+                        </div>
+                        <div class="col-9">
+                            @Html.TextBoxFor(m => m.Email)
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>BUILDER Settings</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="font-size: 10px;">
+                            @(Html.Kendo().Grid<CredentialViewModel>()
+                                .Name("CredentialGrid")
+                                .Columns(column =>
+                                {
+                                    column.Bound(c => c.BuilderInstanceName).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("Instance");
+                                    column.Bound(c => c.BuilderUn).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("Username");
+                                    column.Bound(c => c.BuilderPw).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).ClientTemplate("<span>" + new string('*', "#=BuilderPw#".Length) + "</span>").Title("Password");
+                                    column.Bound(c => c.IsActive).Title("Selected");
+                                    column.Command(command => {
+                                    command.Edit().Text("Edit").UpdateText("Save");
+                                    command.Destroy().Text("Delete");
+                                }).Width(250);
+                                })
+                                .ToolBar(toolbar =>
+                                {
+                                    toolbar.Create().Text("New BUILDER Credentials");
+                                    })
+                                .Editable(editable => editable.Mode(GridEditMode.InLine))
+                                .Sortable(sortable =>
+                                {
+                                    sortable.SortMode(GridSortMode.MultipleColumn);
+                                })
+                                .Filterable(filterable => filterable.Mode(GridFilterMode.Row))
+                                //.Scrollable()
+                                .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Model(model => model.Id(p => p.Id))
+                                    //.Events(e => e.RequestEnd("onRequestEnd"))
+                                    .Read(read => read.Action("BUILDERCreds_Read", "Account"))
+                                    .Create(create => create.Action("BUILDERCreds_Create", "Account"))
+                                    .Update(update => update.Action("BUILDERCreds_Update", "Account"))
+                                    .Destroy(destroy => destroy.Action("BUILDERCreds_Delete", "Account", new { credId = "#=Id#" }))
+                                    .PageSize(20)
+                                )
+                                .Events(e =>
+                                {
+                                    e.Remove("refresh");
+                                    e.SaveChanges("refresh");
+                                })
+                                )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="container">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+            <div class="card bg-danger">
+                <strong>error.&#9;</strong> You are not authorized to view this page.
+            </div>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+}

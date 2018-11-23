@@ -450,10 +450,10 @@ namespace Catalog.Facade.BUILDERCatalog {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsEquipField;
+        private System.Nullable<bool> IsEquipField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsUIIField;
+        private System.Nullable<bool> IsUIIField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SysIdField;
@@ -498,7 +498,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsEquip {
+        public System.Nullable<bool> IsEquip {
             get {
                 return this.IsEquipField;
             }
@@ -511,7 +511,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsUII {
+        public System.Nullable<bool> IsUII {
             get {
                 return this.IsUIIField;
             }
@@ -570,13 +570,13 @@ namespace Catalog.Facade.BUILDERCatalog {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float AdjFactorField;
+        private double AdjFactorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float CIIField;
+        private double CIIField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid CIISetLinkField;
+        private System.Nullable<System.Guid> CIISetLinkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CTypeLinkField;
@@ -594,13 +594,13 @@ namespace Catalog.Facade.BUILDERCatalog {
         private int MCatLinkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TaskListLinkField;
+        private System.Nullable<int> TaskListLinkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UoMField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UseAltDescField;
+        private System.Nullable<int> UseAltDescField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -613,7 +613,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public float AdjFactor {
+        public double AdjFactor {
             get {
                 return this.AdjFactorField;
             }
@@ -626,7 +626,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public float CII {
+        public double CII {
             get {
                 return this.CIIField;
             }
@@ -639,7 +639,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid CIISetLink {
+        public System.Nullable<System.Guid> CIISetLink {
             get {
                 return this.CIISetLinkField;
             }
@@ -717,7 +717,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskListLink {
+        public System.Nullable<int> TaskListLink {
             get {
                 return this.TaskListLinkField;
             }
@@ -743,7 +743,7 @@ namespace Catalog.Facade.BUILDERCatalog {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UseAltDesc {
+        public System.Nullable<int> UseAltDesc {
             get {
                 return this.UseAltDescField;
             }
@@ -972,184 +972,184 @@ namespace Catalog.Facade.BUILDERCatalog {
     public interface ICatalog {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogSystemResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSystem(System.Guid SessionID, string desc, string uiicode, bool isUII);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSystem(int sysId, string desc, string uiicode, bool isUII);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogSystemResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSystemAsync(System.Guid SessionID, string desc, string uiicode, bool isUII);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSystemAsync(int sysId, string desc, string uiicode, bool isUII);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSystems", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSystemsResponse")]
-        Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystems(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystems();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSystems", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSystemsResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemsAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSystemResponse")]
-        Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystem(System.Guid SessionID, int sysId);
+        Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystem(int sysId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSystemResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemAsync(System.Guid SessionID, int sysId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemAsync(int sysId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogSystemResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSystem(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSystem(Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogSystemResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSystemAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSystemAsync(Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogSystemResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSystem(System.Guid SessionID, int sysId);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSystem(int sysId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogSystem", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogSystemResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSystemAsync(System.Guid SessionID, int sysId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSystemAsync(int sysId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponent(System.Guid SessionID, string desc, int sysLink, bool isUII, string UIICode, bool isEquip);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponent(int compId, string desc, int sysLink, bool isUII, string UIICode, bool isEquip);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentAsync(System.Guid SessionID, string desc, int sysLink, bool isUII, string UIICode, bool isEquip);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentAsync(int compId, string desc, int sysLink, bool isUII, string UIICode, bool isEquip);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponents", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentsResponse")]
-        Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponents(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponents();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponents", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentsResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentsAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponent(System.Guid SessionID, int compId);
+        Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponent(int compId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentAsync(System.Guid SessionID, int compId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentAsync(int compId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponent(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponent(Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentAsync(Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponent(System.Guid SessionID, int compId);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponent(int compId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogComponent", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentAsync(System.Guid SessionID, int compId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentAsync(int compId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCMC", ReplyAction="http://tempuri.org/ICatalog/CreateCMCResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCMC(System.Guid SessionID, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCMC(int cmcId, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCMC", ReplyAction="http://tempuri.org/ICatalog/CreateCMCResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCMCAsync(System.Guid SessionID, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCMCAsync(int cmcId, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetAllCMC", ReplyAction="http://tempuri.org/ICatalog/GetAllCMCResponse")]
-        Catalog.Facade.BUILDERCatalog.CMCResult GetAllCMC(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.CMCResult GetAllCMC();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetAllCMC", ReplyAction="http://tempuri.org/ICatalog/GetAllCMCResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetAllCMCAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetAllCMCAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCMC", ReplyAction="http://tempuri.org/ICatalog/GetCMCResponse")]
-        Catalog.Facade.BUILDERCatalog.CMCResult GetCMC(System.Guid SessionID, int CMCID);
+        Catalog.Facade.BUILDERCatalog.CMCResult GetCMC(int CMCID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCMC", ReplyAction="http://tempuri.org/ICatalog/GetCMCResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetCMCAsync(System.Guid SessionID, int CMCID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetCMCAsync(int CMCID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCMC", ReplyAction="http://tempuri.org/ICatalog/UpdateCMCResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCMC(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCMC(Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCMC", ReplyAction="http://tempuri.org/ICatalog/UpdateCMCResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCMCAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCMCAsync(Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCMC", ReplyAction="http://tempuri.org/ICatalog/DeleteCMCResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCMC(System.Guid SessionID, int CMCID);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCMC(int CMCID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCMC", ReplyAction="http://tempuri.org/ICatalog/DeleteCMCResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCMCAsync(System.Guid SessionID, int CMCID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCMCAsync(int CMCID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogMaterialCategoryResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogMaterialCategory(System.Guid SessionID, string desc);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogMaterialCategory(int matCatId, string desc);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogMaterialCategoryResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogMaterialCategoryAsync(System.Guid SessionID, string desc);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogMaterialCategoryAsync(int matCatId, string desc);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategories", ReplyAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategoriesResponse")]
-        Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategories(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategories", ReplyAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategoriesResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoriesAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategoryResponse")]
-        Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategory(System.Guid SessionID, int matCatId);
+        Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategory(int matCatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/GetCatalogMaterialCategoryResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoryAsync(System.Guid SessionID, int matCatId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoryAsync(int matCatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategoryResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogMaterialCategory(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogMaterialCategory(Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogMaterialCategoryResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogMaterialCategoryAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogMaterialCategoryAsync(Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategoryResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogMaterialCategory(System.Guid SessionID, int matCatId);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogMaterialCategory(int matCatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategory", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogMaterialCategoryResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogMaterialCategoryAsync(System.Guid SessionID, int matCatId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogMaterialCategoryAsync(int matCatId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogComponentTypeResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponentType(System.Guid SessionID, string desc);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponentType(int compTypeId, string desc);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogComponentTypeResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentTypeAsync(System.Guid SessionID, string desc);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentTypeAsync(int compTypeId, string desc);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponentTypes", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentTypesResponse")]
-        Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentTypes(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentTypes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponentTypes", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentTypesResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypesAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentTypeResponse")]
-        Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentType(System.Guid SessionID, int compTypeId);
+        Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentType(int compTypeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/GetCatalogComponentTypeResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypeAsync(System.Guid SessionID, int compTypeId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypeAsync(int compTypeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogComponentTypeResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponentType(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponentType(Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogComponentTypeResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentTypeAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentTypeAsync(Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogComponentTypeResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponentType(System.Guid SessionID, int compTypeId);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponentType(int compTypeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogComponentType", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogComponentTypeResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentTypeAsync(System.Guid SessionID, int compTypeId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentTypeAsync(int compTypeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogSubComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSubComponent(System.Guid SessionID, string desc, int unitID);
+        Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSubComponent(int subCompId, string desc, int unitID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/CreateCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/CreateCatalogSubComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSubComponentAsync(System.Guid SessionID, string desc, int unitID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSubComponentAsync(int subCompId, string desc, int unitID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSubComponents", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSubComponentsResponse")]
-        Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponents(System.Guid SessionID);
+        Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponents();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSubComponents", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSubComponentsResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentsAsync(System.Guid SessionID);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSubComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponent(System.Guid SessionID, int subCompId);
+        Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponent(int subCompId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/GetCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/GetCatalogSubComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentAsync(System.Guid SessionID, int subCompId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentAsync(int subCompId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogSubComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSubComponent(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSubComponent(Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/UpdateCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/UpdateCatalogSubComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSubComponentAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSubComponentAsync(Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogSubComponentResponse")]
-        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSubComponent(System.Guid SessionID, int subCompId);
+        Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSubComponent(int subCompId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalog/DeleteCatalogSubComponent", ReplyAction="http://tempuri.org/ICatalog/DeleteCatalogSubComponentResponse")]
-        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSubComponentAsync(System.Guid SessionID, int subCompId);
+        System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSubComponentAsync(int subCompId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1179,244 +1179,244 @@ namespace Catalog.Facade.BUILDERCatalog {
                 base(binding, remoteAddress) {
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSystem(System.Guid SessionID, string desc, string uiicode, bool isUII) {
-            return base.Channel.CreateCatalogSystem(SessionID, desc, uiicode, isUII);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSystem(int sysId, string desc, string uiicode, bool isUII) {
+            return base.Channel.CreateCatalogSystem(sysId, desc, uiicode, isUII);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSystemAsync(System.Guid SessionID, string desc, string uiicode, bool isUII) {
-            return base.Channel.CreateCatalogSystemAsync(SessionID, desc, uiicode, isUII);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSystemAsync(int sysId, string desc, string uiicode, bool isUII) {
+            return base.Channel.CreateCatalogSystemAsync(sysId, desc, uiicode, isUII);
         }
         
-        public Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystems(System.Guid SessionID) {
-            return base.Channel.GetCatalogSystems(SessionID);
+        public Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystems() {
+            return base.Channel.GetCatalogSystems();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemsAsync(System.Guid SessionID) {
-            return base.Channel.GetCatalogSystemsAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemsAsync() {
+            return base.Channel.GetCatalogSystemsAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystem(System.Guid SessionID, int sysId) {
-            return base.Channel.GetCatalogSystem(SessionID, sysId);
+        public Catalog.Facade.BUILDERCatalog.SystemCatalogResult GetCatalogSystem(int sysId) {
+            return base.Channel.GetCatalogSystem(sysId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemAsync(System.Guid SessionID, int sysId) {
-            return base.Channel.GetCatalogSystemAsync(SessionID, sysId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SystemCatalogResult> GetCatalogSystemAsync(int sysId) {
+            return base.Channel.GetCatalogSystemAsync(sysId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSystem(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates) {
-            return base.Channel.UpdateCatalogSystem(SessionID, sysUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSystem(Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates) {
+            return base.Channel.UpdateCatalogSystem(sysUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSystemAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates) {
-            return base.Channel.UpdateCatalogSystemAsync(SessionID, sysUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSystemAsync(Catalog.Facade.BUILDERCatalog.SystemCatalogDescription sysUpdates) {
+            return base.Channel.UpdateCatalogSystemAsync(sysUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSystem(System.Guid SessionID, int sysId) {
-            return base.Channel.DeleteCatalogSystem(SessionID, sysId);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSystem(int sysId) {
+            return base.Channel.DeleteCatalogSystem(sysId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSystemAsync(System.Guid SessionID, int sysId) {
-            return base.Channel.DeleteCatalogSystemAsync(SessionID, sysId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSystemAsync(int sysId) {
+            return base.Channel.DeleteCatalogSystemAsync(sysId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponent(System.Guid SessionID, string desc, int sysLink, bool isUII, string UIICode, bool isEquip) {
-            return base.Channel.CreateCatalogComponent(SessionID, desc, sysLink, isUII, UIICode, isEquip);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponent(int compId, string desc, int sysLink, bool isUII, string UIICode, bool isEquip) {
+            return base.Channel.CreateCatalogComponent(compId, desc, sysLink, isUII, UIICode, isEquip);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentAsync(System.Guid SessionID, string desc, int sysLink, bool isUII, string UIICode, bool isEquip) {
-            return base.Channel.CreateCatalogComponentAsync(SessionID, desc, sysLink, isUII, UIICode, isEquip);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentAsync(int compId, string desc, int sysLink, bool isUII, string UIICode, bool isEquip) {
+            return base.Channel.CreateCatalogComponentAsync(compId, desc, sysLink, isUII, UIICode, isEquip);
         }
         
-        public Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponents(System.Guid SessionID) {
-            return base.Channel.GetCatalogComponents(SessionID);
+        public Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponents() {
+            return base.Channel.GetCatalogComponents();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentsAsync(System.Guid SessionID) {
-            return base.Channel.GetCatalogComponentsAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentsAsync() {
+            return base.Channel.GetCatalogComponentsAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponent(System.Guid SessionID, int compId) {
-            return base.Channel.GetCatalogComponent(SessionID, compId);
+        public Catalog.Facade.BUILDERCatalog.ComponentCatalogResult GetCatalogComponent(int compId) {
+            return base.Channel.GetCatalogComponent(compId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentAsync(System.Guid SessionID, int compId) {
-            return base.Channel.GetCatalogComponentAsync(SessionID, compId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentCatalogResult> GetCatalogComponentAsync(int compId) {
+            return base.Channel.GetCatalogComponentAsync(compId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponent(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates) {
-            return base.Channel.UpdateCatalogComponent(SessionID, compUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponent(Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates) {
+            return base.Channel.UpdateCatalogComponent(compUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates) {
-            return base.Channel.UpdateCatalogComponentAsync(SessionID, compUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentAsync(Catalog.Facade.BUILDERCatalog.ComponentCatalogDescription compUpdates) {
+            return base.Channel.UpdateCatalogComponentAsync(compUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponent(System.Guid SessionID, int compId) {
-            return base.Channel.DeleteCatalogComponent(SessionID, compId);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponent(int compId) {
+            return base.Channel.DeleteCatalogComponent(compId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentAsync(System.Guid SessionID, int compId) {
-            return base.Channel.DeleteCatalogComponentAsync(SessionID, compId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentAsync(int compId) {
+            return base.Channel.DeleteCatalogComponentAsync(compId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCMC(System.Guid SessionID, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink) {
-            return base.Channel.CreateCMC(SessionID, CompLink, MatCatLink, CompType, UoM, UIILink, AdjFactor, CII, UseAltDesc, TaskListLink, CIISetLink);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCMC(int cmcId, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink) {
+            return base.Channel.CreateCMC(cmcId, CompLink, MatCatLink, CompType, UoM, UIILink, AdjFactor, CII, UseAltDesc, TaskListLink, CIISetLink);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCMCAsync(System.Guid SessionID, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink) {
-            return base.Channel.CreateCMCAsync(SessionID, CompLink, MatCatLink, CompType, UoM, UIILink, AdjFactor, CII, UseAltDesc, TaskListLink, CIISetLink);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCMCAsync(int cmcId, int CompLink, int MatCatLink, int CompType, int UoM, int UIILink, float AdjFactor, float CII, int UseAltDesc, int TaskListLink, System.Guid CIISetLink) {
+            return base.Channel.CreateCMCAsync(cmcId, CompLink, MatCatLink, CompType, UoM, UIILink, AdjFactor, CII, UseAltDesc, TaskListLink, CIISetLink);
         }
         
-        public Catalog.Facade.BUILDERCatalog.CMCResult GetAllCMC(System.Guid SessionID) {
-            return base.Channel.GetAllCMC(SessionID);
+        public Catalog.Facade.BUILDERCatalog.CMCResult GetAllCMC() {
+            return base.Channel.GetAllCMC();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetAllCMCAsync(System.Guid SessionID) {
-            return base.Channel.GetAllCMCAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetAllCMCAsync() {
+            return base.Channel.GetAllCMCAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.CMCResult GetCMC(System.Guid SessionID, int CMCID) {
-            return base.Channel.GetCMC(SessionID, CMCID);
+        public Catalog.Facade.BUILDERCatalog.CMCResult GetCMC(int CMCID) {
+            return base.Channel.GetCMC(CMCID);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetCMCAsync(System.Guid SessionID, int CMCID) {
-            return base.Channel.GetCMCAsync(SessionID, CMCID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.CMCResult> GetCMCAsync(int CMCID) {
+            return base.Channel.GetCMCAsync(CMCID);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCMC(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates) {
-            return base.Channel.UpdateCMC(SessionID, cmcUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCMC(Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates) {
+            return base.Channel.UpdateCMC(cmcUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCMCAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates) {
-            return base.Channel.UpdateCMCAsync(SessionID, cmcUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCMCAsync(Catalog.Facade.BUILDERCatalog.CMCDescription cmcUpdates) {
+            return base.Channel.UpdateCMCAsync(cmcUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCMC(System.Guid SessionID, int CMCID) {
-            return base.Channel.DeleteCMC(SessionID, CMCID);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCMC(int CMCID) {
+            return base.Channel.DeleteCMC(CMCID);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCMCAsync(System.Guid SessionID, int CMCID) {
-            return base.Channel.DeleteCMCAsync(SessionID, CMCID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCMCAsync(int CMCID) {
+            return base.Channel.DeleteCMCAsync(CMCID);
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogMaterialCategory(System.Guid SessionID, string desc) {
-            return base.Channel.CreateCatalogMaterialCategory(SessionID, desc);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogMaterialCategory(int matCatId, string desc) {
+            return base.Channel.CreateCatalogMaterialCategory(matCatId, desc);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogMaterialCategoryAsync(System.Guid SessionID, string desc) {
-            return base.Channel.CreateCatalogMaterialCategoryAsync(SessionID, desc);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogMaterialCategoryAsync(int matCatId, string desc) {
+            return base.Channel.CreateCatalogMaterialCategoryAsync(matCatId, desc);
         }
         
-        public Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategories(System.Guid SessionID) {
-            return base.Channel.GetCatalogMaterialCategories(SessionID);
+        public Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategories() {
+            return base.Channel.GetCatalogMaterialCategories();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoriesAsync(System.Guid SessionID) {
-            return base.Channel.GetCatalogMaterialCategoriesAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoriesAsync() {
+            return base.Channel.GetCatalogMaterialCategoriesAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategory(System.Guid SessionID, int matCatId) {
-            return base.Channel.GetCatalogMaterialCategory(SessionID, matCatId);
+        public Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult GetCatalogMaterialCategory(int matCatId) {
+            return base.Channel.GetCatalogMaterialCategory(matCatId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoryAsync(System.Guid SessionID, int matCatId) {
-            return base.Channel.GetCatalogMaterialCategoryAsync(SessionID, matCatId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.MaterialCategoryCatalogResult> GetCatalogMaterialCategoryAsync(int matCatId) {
+            return base.Channel.GetCatalogMaterialCategoryAsync(matCatId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogMaterialCategory(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates) {
-            return base.Channel.UpdateCatalogMaterialCategory(SessionID, matCatUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogMaterialCategory(Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates) {
+            return base.Channel.UpdateCatalogMaterialCategory(matCatUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogMaterialCategoryAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates) {
-            return base.Channel.UpdateCatalogMaterialCategoryAsync(SessionID, matCatUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogMaterialCategoryAsync(Catalog.Facade.BUILDERCatalog.MaterialCategoryDescription matCatUpdates) {
+            return base.Channel.UpdateCatalogMaterialCategoryAsync(matCatUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogMaterialCategory(System.Guid SessionID, int matCatId) {
-            return base.Channel.DeleteCatalogMaterialCategory(SessionID, matCatId);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogMaterialCategory(int matCatId) {
+            return base.Channel.DeleteCatalogMaterialCategory(matCatId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogMaterialCategoryAsync(System.Guid SessionID, int matCatId) {
-            return base.Channel.DeleteCatalogMaterialCategoryAsync(SessionID, matCatId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogMaterialCategoryAsync(int matCatId) {
+            return base.Channel.DeleteCatalogMaterialCategoryAsync(matCatId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponentType(System.Guid SessionID, string desc) {
-            return base.Channel.CreateCatalogComponentType(SessionID, desc);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogComponentType(int compTypeId, string desc) {
+            return base.Channel.CreateCatalogComponentType(compTypeId, desc);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentTypeAsync(System.Guid SessionID, string desc) {
-            return base.Channel.CreateCatalogComponentTypeAsync(SessionID, desc);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogComponentTypeAsync(int compTypeId, string desc) {
+            return base.Channel.CreateCatalogComponentTypeAsync(compTypeId, desc);
         }
         
-        public Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentTypes(System.Guid SessionID) {
-            return base.Channel.GetCatalogComponentTypes(SessionID);
+        public Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentTypes() {
+            return base.Channel.GetCatalogComponentTypes();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypesAsync(System.Guid SessionID) {
-            return base.Channel.GetCatalogComponentTypesAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypesAsync() {
+            return base.Channel.GetCatalogComponentTypesAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentType(System.Guid SessionID, int compTypeId) {
-            return base.Channel.GetCatalogComponentType(SessionID, compTypeId);
+        public Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult GetCatalogComponentType(int compTypeId) {
+            return base.Channel.GetCatalogComponentType(compTypeId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypeAsync(System.Guid SessionID, int compTypeId) {
-            return base.Channel.GetCatalogComponentTypeAsync(SessionID, compTypeId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.ComponentTypeCatalogResult> GetCatalogComponentTypeAsync(int compTypeId) {
+            return base.Channel.GetCatalogComponentTypeAsync(compTypeId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponentType(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates) {
-            return base.Channel.UpdateCatalogComponentType(SessionID, compTypeUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogComponentType(Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates) {
+            return base.Channel.UpdateCatalogComponentType(compTypeUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentTypeAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates) {
-            return base.Channel.UpdateCatalogComponentTypeAsync(SessionID, compTypeUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogComponentTypeAsync(Catalog.Facade.BUILDERCatalog.ComponentTypeDescription compTypeUpdates) {
+            return base.Channel.UpdateCatalogComponentTypeAsync(compTypeUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponentType(System.Guid SessionID, int compTypeId) {
-            return base.Channel.DeleteCatalogComponentType(SessionID, compTypeId);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogComponentType(int compTypeId) {
+            return base.Channel.DeleteCatalogComponentType(compTypeId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentTypeAsync(System.Guid SessionID, int compTypeId) {
-            return base.Channel.DeleteCatalogComponentTypeAsync(SessionID, compTypeId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogComponentTypeAsync(int compTypeId) {
+            return base.Channel.DeleteCatalogComponentTypeAsync(compTypeId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSubComponent(System.Guid SessionID, string desc, int unitID) {
-            return base.Channel.CreateCatalogSubComponent(SessionID, desc, unitID);
+        public Catalog.Facade.BUILDERCatalog.IntResult CreateCatalogSubComponent(int subCompId, string desc, int unitID) {
+            return base.Channel.CreateCatalogSubComponent(subCompId, desc, unitID);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSubComponentAsync(System.Guid SessionID, string desc, int unitID) {
-            return base.Channel.CreateCatalogSubComponentAsync(SessionID, desc, unitID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.IntResult> CreateCatalogSubComponentAsync(int subCompId, string desc, int unitID) {
+            return base.Channel.CreateCatalogSubComponentAsync(subCompId, desc, unitID);
         }
         
-        public Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponents(System.Guid SessionID) {
-            return base.Channel.GetCatalogSubComponents(SessionID);
+        public Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponents() {
+            return base.Channel.GetCatalogSubComponents();
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentsAsync(System.Guid SessionID) {
-            return base.Channel.GetCatalogSubComponentsAsync(SessionID);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentsAsync() {
+            return base.Channel.GetCatalogSubComponentsAsync();
         }
         
-        public Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponent(System.Guid SessionID, int subCompId) {
-            return base.Channel.GetCatalogSubComponent(SessionID, subCompId);
+        public Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult GetCatalogSubComponent(int subCompId) {
+            return base.Channel.GetCatalogSubComponent(subCompId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentAsync(System.Guid SessionID, int subCompId) {
-            return base.Channel.GetCatalogSubComponentAsync(SessionID, subCompId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.SubComponentCatalogResult> GetCatalogSubComponentAsync(int subCompId) {
+            return base.Channel.GetCatalogSubComponentAsync(subCompId);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSubComponent(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates) {
-            return base.Channel.UpdateCatalogSubComponent(SessionID, subCompUpdates);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage UpdateCatalogSubComponent(Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates) {
+            return base.Channel.UpdateCatalogSubComponent(subCompUpdates);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSubComponentAsync(System.Guid SessionID, Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates) {
-            return base.Channel.UpdateCatalogSubComponentAsync(SessionID, subCompUpdates);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> UpdateCatalogSubComponentAsync(Catalog.Facade.BUILDERCatalog.SubComponentDescription subCompUpdates) {
+            return base.Channel.UpdateCatalogSubComponentAsync(subCompUpdates);
         }
         
-        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSubComponent(System.Guid SessionID, int subCompId) {
-            return base.Channel.DeleteCatalogSubComponent(SessionID, subCompId);
+        public Catalog.Facade.BUILDERCatalog.FunctionResultMessage DeleteCatalogSubComponent(int subCompId) {
+            return base.Channel.DeleteCatalogSubComponent(subCompId);
         }
         
-        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSubComponentAsync(System.Guid SessionID, int subCompId) {
-            return base.Channel.DeleteCatalogSubComponentAsync(SessionID, subCompId);
+        public System.Threading.Tasks.Task<Catalog.Facade.BUILDERCatalog.FunctionResultMessage> DeleteCatalogSubComponentAsync(int subCompId) {
+            return base.Channel.DeleteCatalogSubComponentAsync(subCompId);
         }
     }
 }

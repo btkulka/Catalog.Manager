@@ -1,0 +1,60 @@
+﻿@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_MainApplication.cshtml";
+    ViewBag.Title = "Systems List";
+}
+<div class="col-10" style="font-size: 10px;">
+    <div class="row m-3">
+        <div class="col-12">
+            <h3>Systems</h3>
+            <hr/>
+        </div>
+    </div>
+    <div class="container m-3">
+        @(Html.Kendo().Grid<CatalogSystem>
+            ()
+            .Name("SystemsGrid")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.SystemId).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("System ID");
+                columns.Bound(c => c.SystemDescription).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("Description").ClientTemplate(@Html.ActionLink("#=SystemDescription#", "Index", "Systems", new { systemId = "#=SystemId#" }, null).ToHtmlString());
+                columns.Bound(c => c.UiiCode).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("UII Code");
+                columns.Bound(c => c.IsUii).Filterable(filterable => filterable.Cell(cell => cell.Operator("contains").ShowOperators(false).SuggestionOperator(FilterType.Contains))).Title("Is UII");
+                columns.Command(command => {
+                    command.Edit().Text("Edit").UpdateText("Save");
+                });
+            })
+            .ToolBar(toolbar =>
+            {
+                toolbar.Custom().Text("New System").Action("Systems_Create", "Systems");
+                toolbar.Excel();
+            })
+            .Editable(editable => editable.Mode(GridEditMode.InLine))
+            .Sortable(sortable =>
+            {
+                sortable.SortMode(GridSortMode.MultipleColumn);
+            })
+            .Filterable(filterable => filterable.Mode(GridFilterMode.Row))
+            .Scrollable()
+            .Pageable()
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .Model(model => {
+                model.Id(p => p.Id);
+                model.Field(p => p.SystemId).Editable(false);
+            })
+            .Read(read => read.Action("Systems_Read", "Systems"))
+            .Destroy(destroy => destroy.Action("Systems_Delete", "Systems"))
+            .Update(update => update.Action("Systems_Update", "Systems"))
+            .PageSize(20)
+            )
+            .Excel(excel => excel
+            .FileName("Catalog System List.xlsx")
+            .Filterable(true)
+            .AllPages(true)
+            .ProxyURL(Url.Action("Excel_Export_List", "Systems"))
+            )
+        )
+    </div>
+</div>

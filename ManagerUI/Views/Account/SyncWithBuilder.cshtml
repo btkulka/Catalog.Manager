@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Sync";
+}
+
+<script>
+
+    function BeginSync() {
+        $("#cardBody").html("Synchronizing with BUILDER... This will take a moment...<br><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw m-3\"></i>");
+
+        var aj = $.ajax({
+            url: "@Url.Action("SyncWithBuilder", "Catalog")",
+            success: function () {
+                window.location = "@Url.Action("Index", "Catalog")";
+            },
+            error: function () {
+                window.location = "@Url.Action("Index", "Catalog")";
+            }
+        })
+    }
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="card m-3">
+                <div class="card-header text-center">
+                    <h4>Sync to BUILDER</h4>
+                </div>
+                <div class="card-body text-center" id="cardBody">
+                    <p class="text-justify">Catalog Manager needs to sync all records with BUILDER. This could take a while.</p>
+                    <button class="btn btn-outline-info" onclick="BeginSync()">Begin Sync</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

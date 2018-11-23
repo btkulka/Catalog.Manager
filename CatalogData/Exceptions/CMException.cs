@@ -6,7 +6,7 @@ namespace CatalogData.Exceptions
 {
     public abstract class CMException : Exception
     {
-        protected string ErrorCode;
+        public string ErrorCode;
 
         public CMException() : base()
         {

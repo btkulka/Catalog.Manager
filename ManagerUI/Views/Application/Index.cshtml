@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Manage Application";
+}
+
+<div class="container m-3">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h4>Manage Application</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center mt-3">
+                            <a href="@Url.Action("ManageDeactivated_CatalogItems", "Application")">
+                                <h6><i class="fa fa-minus-circle"></i>&#9;Manage Deactivated Records</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>

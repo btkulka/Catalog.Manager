@@ -1,9 +1,11 @@
-﻿using CatalogData.Exceptions;
+﻿using Catalog.Facade.BUILDERCatalog;
+using Catalog.Facade.Wrappers;
+using CatalogData.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CatalogFacade.Systems
+namespace CatalogFacade
 {
     public partial class CatalogFacade
     {
@@ -17,16 +19,33 @@ namespace CatalogFacade.Systems
          *  ERRORS: {0} CMBUILDERResponseException - BUILDER experienced an issue.
          *          {1} CMCatalogFacadeException - an error occurred while attempting to make the call.
         */
-        public void CreateCatalogSystems(string description, string uiiCode, bool isUII )
+        public WPRSystemDescription CreateCatalogSystems(SystemCatalogDescription desc)
         {
+            WPRSystemDescription Return = WPRSystemDescription.Wrap(desc);
             try
             {
+                var cc = InitCatalogClient();
+                var result = cc.CreateCatalogSystem(desc.ID, desc.Description, desc.UIICode, desc.IsUII);
 
+                if(result.Status == FunctionResultMessage.Success)
+                {
+                    Return.StatusCode = "200";
+                    Return.StatusDetail = "Success";
+                }
+                else
+                {
+                    throw new CMBUILDERResponseException(String.Format("BUILDER was unable to create Catalog System: {0}", result.Status.ToString()));
+                }
             }catch(Exception ex)
             {
                 if (!(ex is CMException))
-                    ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to create the given System [Desc: {0}]: {1}", description, ex.Message), ex);
+                    ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to create the given System [Desc: {0}]: {1}", desc.Description, ex.Message), ex);
+
+                Return.StatusCode = ((CMException)ex).ErrorCode.ToString();
+                Return.StatusDetail = ex.Message;
             }
+
+            return Return;
         }
 
     }

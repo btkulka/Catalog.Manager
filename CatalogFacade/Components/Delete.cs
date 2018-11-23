@@ -1,9 +1,10 @@
-﻿using CatalogData.Exceptions;
+﻿using Catalog.Facade.BUILDERCatalog;
+using CatalogData.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CatalogFacade.Components
+namespace CatalogFacade
 {
     public partial class CatalogFacade
     {
@@ -15,16 +16,28 @@ namespace CatalogFacade.Components
          *  ERRORS: {0} CMBUILDERResponseException - BUILDER experienced an issue.
          *          {1} CMCatalogFacadeException - an error occurred while attempting to make the call.
         */
-        public void DeleteCatalogSystem(int componentId)
+        public bool DeleteCatalogComponent(int componentId)
         {
             try
             {
+                var cc = InitCatalogClient();
+                var result = cc.DeleteCatalogComponent(componentId);
 
+                if(result == FunctionResultMessage.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new CMBUILDERResponseException(String.Format("BUILDER was unable to delete the given Component [ID: {0}]: {1}", componentId, result.ToString()));
+                }
             }
             catch (Exception ex)
             {
                 if (!(ex is CMException))
                     ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to delete the requested Component [ID: {0}]: {1}", componentId, ex.Message), ex);
+
+                return false;
             }
         }
     }

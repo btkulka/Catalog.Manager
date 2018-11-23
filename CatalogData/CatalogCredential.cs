@@ -18,8 +18,11 @@ namespace CatalogData
         public string AspNetUserId { get; set; }
         public string BuilderUn { get; set; }
         public string BuilderPw { get; set; }
-        public string RemoteAddress { get; set; }
+        public Nullable<System.DateTime> LastSynced { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.Guid> BUILDERInstanceId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual BUILDERInstance BUILDERInstance { get; set; }
     }
 }

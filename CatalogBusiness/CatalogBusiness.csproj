@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80965B44-DEC8-4D92-898C-3231CB1DE1E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CatalogBusiness</RootNamespace>
+    <AssemblyName>CatalogBusiness</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatalogBusiness.cs" />
+    <Compile Include="CatalogItem\Create.cs" />
+    <Compile Include="CatalogItem\Delete.cs" />
+    <Compile Include="CatalogItem\Read.cs" />
+    <Compile Include="CatalogItem\Update.cs" />
+    <Compile Include="ComponentType\Create.cs" />
+    <Compile Include="ComponentType\Delete.cs" />
+    <Compile Include="ComponentType\Read.cs" />
+    <Compile Include="ComponentType\Update.cs" />
+    <Compile Include="Component\Create.cs" />
+    <Compile Include="Component\Delete.cs" />
+    <Compile Include="Component\Read.cs" />
+    <Compile Include="Component\Update.cs" />
+    <Compile Include="MaterialCategory\Create.cs" />
+    <Compile Include="MaterialCategory\Delete.cs" />
+    <Compile Include="MaterialCategory\Read.cs" />
+    <Compile Include="MaterialCategory\Update.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubComponent\Create.cs" />
+    <Compile Include="SubComponent\Delete.cs" />
+    <Compile Include="SubComponent\Read.cs" />
+    <Compile Include="SubComponent\Update.cs" />
+    <Compile Include="System\Create.cs" />
+    <Compile Include="System\Delete.cs" />
+    <Compile Include="System\Read.cs" />
+    <Compile Include="System\Update.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CatalogData\CatalogData.csproj">
+      <Project>{e4879b65-3f5b-4698-9e4d-b3aa5854f554}</Project>
+      <Name>CatalogData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatalogFacade\CatalogFacade.csproj">
+      <Project>{99a4a43f-c2dd-4ebf-be53-f9bba4a22112}</Project>
+      <Name>CatalogFacade</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

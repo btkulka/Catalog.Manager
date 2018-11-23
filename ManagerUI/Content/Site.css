@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,13 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.manage-options{
+    border-bottom: 1px solid black;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    outline: none;
+    font-size: 11px;
 }

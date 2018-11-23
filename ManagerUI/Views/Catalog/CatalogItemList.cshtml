@@ -1,0 +1,51 @@
+﻿@using ManagerUI.Models
+
+@{
+    Layout = "~/Views/Shared/_MainApplication.cshtml";
+    ViewBag.Title = "Home";
+}
+
+<div class="col-12 p-3">
+    <div class="row m-3">
+        <div class="col-12">
+            <h3>Catalog Items</h3>
+        </div>
+    </div>
+    <hr />
+    @(Html.Kendo().Grid<CatalogItemViewModel>
+            ()
+            .Name("CatalogItemGrid")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.CMCID).Title("CMCID").Width(100);
+                columns.Bound(c => c.ComponentName).ClientTemplate(@Html.ActionLink("#=ComponentName#", "Index", "Components", new { compId = "#=ComponentId#" }, null).ToHtmlString()).Title("Component");
+                columns.Bound(c => c.MaterialCategoryName).ClientTemplate(@Html.ActionLink("#=MaterialCategoryName#", "Index", "MaterialCategories", new { matCatId = "#=MaterialCategoryId#" }, null).ToHtmlString()).Title("Material Category");
+                columns.Bound(c => c.ComponentTypeDesc).ClientTemplate(@Html.ActionLink("#=ComponentTypeDesc#", "Index", "ComponentTypes", new { compTypeId = "#=ComponentTypeId#" }, null).ToHtmlString()).Title("Component Type");
+                columns.Bound(c => c.TaskListId).Title("Task List Id").Width(100);
+                columns.Bound(c => c.UoM).Title("UoM").Width(100);
+                columns.Bound(c => c.UseAltDesc).Title("Use Alt. Desc.").Width(100);
+            })
+            .HtmlAttributes(new { style = "height:600px;" })
+            .ToolBar(toolbar =>
+            {
+                toolbar.Create().Text("New Catalog Item");
+            })
+            .Editable(editable => editable.Mode(GridEditMode.InLine))
+            .Sortable(sortable =>
+            {
+                sortable.SortMode(GridSortMode.MultipleColumn);
+            })
+            .Filterable(filterable => filterable.Mode(GridFilterMode.Row))
+            .Scrollable()
+            .Pageable()
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .Model(model => model.Id(p => p.CMCID))
+            .Read(read => read.Action("CatalogItems_Read", "Catalog"))
+            .Create(create => create.Action("CatalogItems_Create", "Catalog"))
+            .Destroy(destroy => destroy.Action("CatalogItems_Delete", "Catalog"))
+            .Update(update => update.Action("CatalogItems_Update", "Catalog"))
+            .PageSize(40)
+            )
+    )
+</div>

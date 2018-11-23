@@ -3,6 +3,7 @@ using System;
 using Catalog.Facade.BUILDERCatalog;
 using System.Collections.Generic;
 using System.Text;
+using Catalog.Facade.Wrappers;
 
 namespace CatalogFacade
 {
@@ -16,17 +17,35 @@ namespace CatalogFacade
          *          {1} CMCatalogFacadeException - an error occurred while attempting to make the call.
         */
         // TODO: add reference for MaterialCategoryDescription
-        public void UpdateCatalogMaterialCategory(MaterialCategoryDescription matCatUpdates)
+        public WPRMaterialCategoryDescription UpdateCatalogMaterialCategory(MaterialCategoryDescription matCatUpdates)
         {
+            WPRMaterialCategoryDescription Return = WPRMaterialCategoryDescription.Wrap(matCatUpdates);
+
             try
             {
+                var cc = InitCatalogClient();
+                var result = cc.UpdateCatalogMaterialCategory(matCatUpdates);
 
+                if(result == FunctionResultMessage.Success)
+                {
+                    Return.StatusCode = "200";
+                    Return.StatusDetail = "Success";
+                }
+                else
+                {
+                    throw new CMBUILDERResponseException(String.Format("BUILDER was unable to update the Material Category: {0}", result.ToString()));
+                }
             }
             catch (Exception ex)
             {
                 if (!(ex is CMException))
                     ex = new CMCatalogFacadeException(String.Format("Catalog Manager encountered an error while trying to update the requested Material Category [ID: {0}]: {1}", matCatUpdates.ID, ex.Message), ex);
+
+                Return.StatusCode = ((CMException)ex).ErrorCode;
+                Return.StatusDetail = ex.Message;
             }
+
+            return Return;
         }
     }
 }

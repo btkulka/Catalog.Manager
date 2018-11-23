@@ -47,8 +47,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="IsEquip" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IsUII" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsEquip" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUII" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="SysId" type="xs:int" />
       <xs:element minOccurs="0" name="UIICode" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -72,17 +72,17 @@
   <xs:element name="ArrayOfCMCDescription" nillable="true" type="tns:ArrayOfCMCDescription" />
   <xs:complexType name="CMCDescription">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AdjFactor" type="xs:float" />
-      <xs:element minOccurs="0" name="CII" type="xs:float" />
-      <xs:element minOccurs="0" name="CIISetLink" type="ser:guid" />
+      <xs:element minOccurs="0" name="AdjFactor" type="xs:double" />
+      <xs:element minOccurs="0" name="CII" type="xs:double" />
+      <xs:element minOccurs="0" name="CIISetLink" nillable="true" type="ser:guid" />
       <xs:element minOccurs="0" name="CTypeLink" type="xs:int" />
       <xs:element minOccurs="0" name="CompLink" type="xs:int" />
       <xs:element minOccurs="0" name="CompUIILink" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="MCatLink" type="xs:int" />
-      <xs:element minOccurs="0" name="TaskListLink" type="xs:int" />
+      <xs:element minOccurs="0" name="TaskListLink" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="UoM" type="xs:int" />
-      <xs:element minOccurs="0" name="UseAltDesc" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAltDesc" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CMCDescription" nillable="true" type="tns:CMCDescription" />

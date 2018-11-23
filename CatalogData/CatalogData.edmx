@@ -37,6 +37,16 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="BUILDERInstances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RemoteServiceAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastSynced" Type="datetime" />
+          <Property Name="FlagDeleted" Type="bit" />
+        </EntityType>
         <EntityType Name="CatalogCredentials">
           <Key>
             <PropertyRef Name="Id" />
@@ -45,7 +55,96 @@
           <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="BuilderUn" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="BuilderPw" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="RemoteAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastSynced" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="CatalogItems">
+          <Key>
+            <PropertyRef Name="CMCID" />
+          </Key>
+          <Property Name="CMCID" Type="int" Nullable="false" />
+          <Property Name="ComponentId" Type="int" Nullable="false" />
+          <Property Name="MaterialCategoryId" Type="int" Nullable="false" />
+          <Property Name="ComponentTypeId" Type="int" Nullable="false" />
+          <Property Name="UoM" Type="int" Nullable="false" />
+          <Property Name="ComponentUiiId" Type="int" Nullable="false" />
+          <Property Name="AdjFactor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CII" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TaskListId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UseAltDesc" Type="int" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogSystems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="SystemId" Type="int" Nullable="false" />
+          <Property Name="SystemDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="UiiCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsUii" Type="bit" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ComponentId" Type="int" Nullable="false" />
+          <Property Name="SystemId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsUii" Type="bit" />
+          <Property Name="UiiCode" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsEquip" Type="bit" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ComponentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CompTypeId" Type="int" Nullable="false" />
+          <Property Name="CompTypeDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaterialCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="MatCatId" Type="int" Nullable="false" />
+          <Property Name="MatCatDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubComponents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="SubComponentId" Type="int" Nullable="false" />
+          <Property Name="SubComponentDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SubCompUnitId" Type="int" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BUILDERInstanceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK__CatalogCr__AspNe__68487DD7">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
@@ -56,6 +155,162 @@
             </Principal>
             <Dependent Role="CatalogCredentials">
               <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogCr__BUILD__04E4BC85">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="0..1" />
+          <End Role="CatalogCredentials" Type="Self.CatalogCredentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogCredentials">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogIt__BUILD__0E6E26BF">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="CatalogItems" Type="Self.CatalogItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogItems">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogIt__Creat__10566F31">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="CatalogItems" Type="Self.CatalogItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogItems">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogSy__BUILD__1CBC4616">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="CatalogSystems" Type="Self.CatalogSystems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogSystems">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogSy__Creat__1BC821DD">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="CatalogSystems" Type="Self.CatalogSystems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogSystems">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__BUILD__2B0A656D">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="Components" Type="Self.Components" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Components">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__BUILD__31B762FC">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="ComponentType" Type="Self.ComponentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentType">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__Creat__2A164134">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Components" Type="Self.Components" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Components">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__Creat__30C33EC3">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ComponentType" Type="Self.ComponentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentType">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialC__BUILD__3B40CD36">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="MaterialCategory" Type="Self.MaterialCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialCategory">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialC__Creat__3A4CA8FD">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MaterialCategory" Type="Self.MaterialCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialCategory">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCompon__BUILD__395884C4">
+          <End Role="BUILDERInstances" Type="Self.BUILDERInstances" Multiplicity="1" />
+          <End Role="SubComponents" Type="Self.SubComponents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstances">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubComponents">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCompon__Creat__3864608B">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="SubComponents" Type="Self.SubComponents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubComponents">
+              <PropertyRef Name="CreatedByUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -91,10 +346,69 @@
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BUILDERInstances" EntityType="Self.BUILDERInstances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CatalogCredentials" EntityType="Self.CatalogCredentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogItems" EntityType="Self.CatalogItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogSystems" EntityType="Self.CatalogSystems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialCategory" EntityType="Self.MaterialCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubComponents" EntityType="Self.SubComponents" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__CatalogCr__AspNe__68487DD7" Association="Self.FK__CatalogCr__AspNe__68487DD7">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="CatalogCredentials" EntitySet="CatalogCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogCr__BUILD__04E4BC85" Association="Self.FK__CatalogCr__BUILD__04E4BC85">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="CatalogCredentials" EntitySet="CatalogCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogIt__BUILD__0E6E26BF" Association="Self.FK__CatalogIt__BUILD__0E6E26BF">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="CatalogItems" EntitySet="CatalogItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogIt__Creat__10566F31" Association="Self.FK__CatalogIt__Creat__10566F31">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CatalogItems" EntitySet="CatalogItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogSy__BUILD__1CBC4616" Association="Self.FK__CatalogSy__BUILD__1CBC4616">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="CatalogSystems" EntitySet="CatalogSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogSy__Creat__1BC821DD" Association="Self.FK__CatalogSy__Creat__1BC821DD">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CatalogSystems" EntitySet="CatalogSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__BUILD__2B0A656D" Association="Self.FK__Component__BUILD__2B0A656D">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="Components" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__BUILD__31B762FC" Association="Self.FK__Component__BUILD__31B762FC">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="ComponentType" EntitySet="ComponentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__Creat__2A164134" Association="Self.FK__Component__Creat__2A164134">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Components" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__Creat__30C33EC3" Association="Self.FK__Component__Creat__30C33EC3">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ComponentType" EntitySet="ComponentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialC__BUILD__3B40CD36" Association="Self.FK__MaterialC__BUILD__3B40CD36">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="MaterialCategory" EntitySet="MaterialCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialC__Creat__3A4CA8FD" Association="Self.FK__MaterialC__Creat__3A4CA8FD">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MaterialCategory" EntitySet="MaterialCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCompon__BUILD__395884C4" Association="Self.FK__SubCompon__BUILD__395884C4">
+            <End Role="BUILDERInstances" EntitySet="BUILDERInstances" />
+            <End Role="SubComponents" EntitySet="SubComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCompon__Creat__3864608B" Association="Self.FK__SubCompon__Creat__3864608B">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="SubComponents" EntitySet="SubComponents" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -121,7 +435,66 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="BUILDERInstances" EntityType="CatalogManagerModel.BUILDERInstance" />
+          <AssociationSet Name="FK__CatalogCr__BUILD__04E4BC85" Association="CatalogManagerModel.FK__CatalogCr__BUILD__04E4BC85">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="CatalogCredential" EntitySet="CatalogCredentials" />
+          </AssociationSet>
+          <EntitySet Name="CatalogItems" EntityType="CatalogManagerModel.CatalogItem" />
+          <EntitySet Name="CatalogSystems" EntityType="CatalogManagerModel.CatalogSystem" />
+          <EntitySet Name="Components" EntityType="CatalogManagerModel.Component" />
+          <EntitySet Name="ComponentTypes" EntityType="CatalogManagerModel.ComponentType" />
+          <EntitySet Name="MaterialCategories" EntityType="CatalogManagerModel.MaterialCategory" />
+          <EntitySet Name="SubComponents" EntityType="CatalogManagerModel.SubComponent" />
+          <AssociationSet Name="FK__CatalogIt__Creat__10566F31" Association="CatalogManagerModel.FK__CatalogIt__Creat__10566F31">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CatalogItem" EntitySet="CatalogItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogSy__Creat__1BC821DD" Association="CatalogManagerModel.FK__CatalogSy__Creat__1BC821DD">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CatalogSystem" EntitySet="CatalogSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__Creat__2A164134" Association="CatalogManagerModel.FK__Component__Creat__2A164134">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Component" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__Creat__30C33EC3" Association="CatalogManagerModel.FK__Component__Creat__30C33EC3">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialC__Creat__3A4CA8FD" Association="CatalogManagerModel.FK__MaterialC__Creat__3A4CA8FD">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="MaterialCategory" EntitySet="MaterialCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCompon__Creat__3864608B" Association="CatalogManagerModel.FK__SubCompon__Creat__3864608B">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="SubComponent" EntitySet="SubComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogIt__BUILD__0E6E26BF" Association="CatalogManagerModel.FK__CatalogIt__BUILD__0E6E26BF">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="CatalogItem" EntitySet="CatalogItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CatalogSy__BUILD__1CBC4616" Association="CatalogManagerModel.FK__CatalogSy__BUILD__1CBC4616">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="CatalogSystem" EntitySet="CatalogSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__BUILD__2B0A656D" Association="CatalogManagerModel.FK__Component__BUILD__2B0A656D">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="Component" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Component__BUILD__31B762FC" Association="CatalogManagerModel.FK__Component__BUILD__31B762FC">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialC__BUILD__3B40CD36" Association="CatalogManagerModel.FK__MaterialC__BUILD__3B40CD36">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="MaterialCategory" EntitySet="MaterialCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCompon__BUILD__395884C4" Association="CatalogManagerModel.FK__SubCompon__BUILD__395884C4">
+            <End Role="BUILDERInstance" EntitySet="BUILDERInstances" />
+            <End Role="SubComponent" EntitySet="SubComponents" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -148,6 +521,12 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CatalogCredentials" Relationship="CatalogManagerModel.FK__CatalogCr__AspNe__68487DD7" FromRole="AspNetUser" ToRole="CatalogCredential" />
           <NavigationProperty Name="AspNetRoles" Relationship="CatalogManagerModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="CatalogItems" Relationship="CatalogManagerModel.FK__CatalogIt__Creat__10566F31" FromRole="AspNetUser" ToRole="CatalogItem" />
+          <NavigationProperty Name="CatalogSystems" Relationship="CatalogManagerModel.FK__CatalogSy__Creat__1BC821DD" FromRole="AspNetUser" ToRole="CatalogSystem" />
+          <NavigationProperty Name="Components" Relationship="CatalogManagerModel.FK__Component__Creat__2A164134" FromRole="AspNetUser" ToRole="Component" />
+          <NavigationProperty Name="ComponentTypes" Relationship="CatalogManagerModel.FK__Component__Creat__30C33EC3" FromRole="AspNetUser" ToRole="ComponentType" />
+          <NavigationProperty Name="MaterialCategories" Relationship="CatalogManagerModel.FK__MaterialC__Creat__3A4CA8FD" FromRole="AspNetUser" ToRole="MaterialCategory" />
+          <NavigationProperty Name="SubComponents" Relationship="CatalogManagerModel.FK__SubCompon__Creat__3864608B" FromRole="AspNetUser" ToRole="SubComponent" />
         </EntityType>
         <EntityType Name="CatalogCredential">
           <Key>
@@ -157,8 +536,11 @@
           <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="BuilderUn" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="BuilderPw" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="RemoteAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__CatalogCr__AspNe__68487DD7" FromRole="CatalogCredential" ToRole="AspNetUser" />
+          <Property Name="LastSynced" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="BUILDERInstanceId" Type="Guid" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__CatalogCr__BUILD__04E4BC85" FromRole="CatalogCredential" ToRole="BUILDERInstance" />
         </EntityType>
         <Association Name="FK__CatalogCr__AspNe__68487DD7">
           <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -176,7 +558,279 @@
           <End Type="CatalogManagerModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-      </Schema>
+        <EntityType Name="BUILDERInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RemoteServiceAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastSynced" Type="DateTime" Precision="3" />
+          <Property Name="FlagDeleted" Type="Boolean" />
+          <NavigationProperty Name="CatalogCredentials" Relationship="CatalogManagerModel.FK__CatalogCr__BUILD__04E4BC85" FromRole="BUILDERInstance" ToRole="CatalogCredential" />
+          <NavigationProperty Name="CatalogItems" Relationship="CatalogManagerModel.FK__CatalogIt__BUILD__0E6E26BF" FromRole="BUILDERInstance" ToRole="CatalogItem" />
+          <NavigationProperty Name="CatalogSystems" Relationship="CatalogManagerModel.FK__CatalogSy__BUILD__1CBC4616" FromRole="BUILDERInstance" ToRole="CatalogSystem" />
+          <NavigationProperty Name="Components" Relationship="CatalogManagerModel.FK__Component__BUILD__2B0A656D" FromRole="BUILDERInstance" ToRole="Component" />
+          <NavigationProperty Name="ComponentTypes" Relationship="CatalogManagerModel.FK__Component__BUILD__31B762FC" FromRole="BUILDERInstance" ToRole="ComponentType" />
+          <NavigationProperty Name="MaterialCategories" Relationship="CatalogManagerModel.FK__MaterialC__BUILD__3B40CD36" FromRole="BUILDERInstance" ToRole="MaterialCategory" />
+          <NavigationProperty Name="SubComponents" Relationship="CatalogManagerModel.FK__SubCompon__BUILD__395884C4" FromRole="BUILDERInstance" ToRole="SubComponent" />
+        </EntityType>
+        <Association Name="FK__CatalogCr__BUILD__04E4BC85">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="0..1" />
+          <End Type="CatalogManagerModel.CatalogCredential" Role="CatalogCredential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogCredential">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CatalogItem">
+          <Key>
+            <PropertyRef Name="CMCID" />
+          </Key>
+          <Property Name="CMCID" Type="Int32" Nullable="false" />
+          <Property Name="ComponentId" Type="Int32" Nullable="false" />
+          <Property Name="MaterialCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ComponentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UoM" Type="Int32" Nullable="false" />
+          <Property Name="ComponentUiiId" Type="Int32" Nullable="false" />
+          <Property Name="AdjFactor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CII" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TaskListId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UseAltDesc" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__CatalogIt__Creat__10566F31" FromRole="CatalogItem" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__CatalogIt__BUILD__0E6E26BF" FromRole="CatalogItem" ToRole="BUILDERInstance" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="SystemId" Type="Int32" Nullable="false" />
+          <Property Name="SystemDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UiiCode" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsUii" Type="Boolean" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__CatalogSy__Creat__1BC821DD" FromRole="CatalogSystem" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__CatalogSy__BUILD__1CBC4616" FromRole="CatalogSystem" ToRole="BUILDERInstance" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ComponentId" Type="Int32" Nullable="false" />
+          <Property Name="SystemId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsUii" Type="Boolean" />
+          <Property Name="UiiCode" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsEquip" Type="Boolean" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__Component__Creat__2A164134" FromRole="Component" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__Component__BUILD__2B0A656D" FromRole="Component" ToRole="BUILDERInstance" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ComponentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CompTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CompTypeDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__Component__Creat__30C33EC3" FromRole="ComponentType" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__Component__BUILD__31B762FC" FromRole="ComponentType" ToRole="BUILDERInstance" />
+        </EntityType>
+        <EntityType Name="MaterialCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="MatCatId" Type="Int32" Nullable="false" />
+          <Property Name="MatCatDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__MaterialC__Creat__3A4CA8FD" FromRole="MaterialCategory" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__MaterialC__BUILD__3B40CD36" FromRole="MaterialCategory" ToRole="BUILDERInstance" />
+        </EntityType>
+        <EntityType Name="SubComponent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="SubComponentId" Type="Int32" Nullable="false" />
+          <Property Name="SubComponentDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SubCompUnitId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BUILDERInstanceId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="CatalogManagerModel.FK__SubCompon__Creat__3864608B" FromRole="SubComponent" ToRole="AspNetUser" />
+          <NavigationProperty Name="BUILDERInstance" Relationship="CatalogManagerModel.FK__SubCompon__BUILD__395884C4" FromRole="SubComponent" ToRole="BUILDERInstance" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__CatalogIt__Creat__10566F31">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.CatalogItem" Role="CatalogItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogItem">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogSy__Creat__1BC821DD">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.CatalogSystem" Role="CatalogSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogSystem">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__Creat__2A164134">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.Component" Role="Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__Creat__30C33EC3">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.ComponentType" Role="ComponentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentType">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialC__Creat__3A4CA8FD">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.MaterialCategory" Role="MaterialCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialCategory">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCompon__Creat__3864608B">
+          <End Type="CatalogManagerModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="CatalogManagerModel.SubComponent" Role="SubComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubComponent">
+              <PropertyRef Name="CreatedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogIt__BUILD__0E6E26BF">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.CatalogItem" Role="CatalogItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogItem">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CatalogSy__BUILD__1CBC4616">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.CatalogSystem" Role="CatalogSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogSystem">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__BUILD__2B0A656D">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.Component" Role="Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Component__BUILD__31B762FC">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.ComponentType" Role="ComponentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentType">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialC__BUILD__3B40CD36">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.MaterialCategory" Role="MaterialCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialCategory">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCompon__BUILD__395884C4">
+          <End Type="CatalogManagerModel.BUILDERInstance" Role="BUILDERInstance" Multiplicity="1" />
+          <End Type="CatalogManagerModel.SubComponent" Role="SubComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUILDERInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubComponent">
+              <PropertyRef Name="BUILDERInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -211,7 +865,9 @@
           <EntitySetMapping Name="CatalogCredentials">
             <EntityTypeMapping TypeName="CatalogManagerModel.CatalogCredential">
               <MappingFragment StoreEntitySet="CatalogCredentials">
-                <ScalarProperty Name="RemoteAddress" ColumnName="RemoteAddress" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastSynced" ColumnName="LastSynced" />
                 <ScalarProperty Name="BuilderPw" ColumnName="BuilderPw" />
                 <ScalarProperty Name="BuilderUn" ColumnName="BuilderUn" />
                 <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
@@ -227,6 +883,110 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="BUILDERInstances">
+            <EntityTypeMapping TypeName="CatalogManagerModel.BUILDERInstance">
+              <MappingFragment StoreEntitySet="BUILDERInstances">
+                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
+                <ScalarProperty Name="LastSynced" ColumnName="LastSynced" />
+                <ScalarProperty Name="RemoteServiceAddress" ColumnName="RemoteServiceAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogItems">
+            <EntityTypeMapping TypeName="CatalogManagerModel.CatalogItem">
+              <MappingFragment StoreEntitySet="CatalogItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UseAltDesc" ColumnName="UseAltDesc" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TaskListId" ColumnName="TaskListId" />
+                <ScalarProperty Name="CII" ColumnName="CII" />
+                <ScalarProperty Name="AdjFactor" ColumnName="AdjFactor" />
+                <ScalarProperty Name="ComponentUiiId" ColumnName="ComponentUiiId" />
+                <ScalarProperty Name="UoM" ColumnName="UoM" />
+                <ScalarProperty Name="ComponentTypeId" ColumnName="ComponentTypeId" />
+                <ScalarProperty Name="MaterialCategoryId" ColumnName="MaterialCategoryId" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+                <ScalarProperty Name="CMCID" ColumnName="CMCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogSystems">
+            <EntityTypeMapping TypeName="CatalogManagerModel.CatalogSystem">
+              <MappingFragment StoreEntitySet="CatalogSystems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="IsUii" ColumnName="IsUii" />
+                <ScalarProperty Name="UiiCode" ColumnName="UiiCode" />
+                <ScalarProperty Name="SystemDescription" ColumnName="SystemDescription" />
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="CatalogManagerModel.Component">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="IsEquip" ColumnName="IsEquip" />
+                <ScalarProperty Name="UiiCode" ColumnName="UiiCode" />
+                <ScalarProperty Name="IsUii" ColumnName="IsUii" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponentTypes">
+            <EntityTypeMapping TypeName="CatalogManagerModel.ComponentType">
+              <MappingFragment StoreEntitySet="ComponentType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CompTypeDescription" ColumnName="CompTypeDescription" />
+                <ScalarProperty Name="CompTypeId" ColumnName="CompTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialCategories">
+            <EntityTypeMapping TypeName="CatalogManagerModel.MaterialCategory">
+              <MappingFragment StoreEntitySet="MaterialCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="MatCatDescription" ColumnName="MatCatDescription" />
+                <ScalarProperty Name="MatCatId" ColumnName="MatCatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubComponents">
+            <EntityTypeMapping TypeName="CatalogManagerModel.SubComponent">
+              <MappingFragment StoreEntitySet="SubComponents">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BUILDERInstanceId" ColumnName="BUILDERInstanceId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="SubCompUnitId" ColumnName="SubCompUnitId" />
+                <ScalarProperty Name="SubComponentDescription" ColumnName="SubComponentDescription" />
+                <ScalarProperty Name="SubComponentId" ColumnName="SubComponentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

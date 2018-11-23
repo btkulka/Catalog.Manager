@@ -28,5 +28,12 @@ namespace CatalogData
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CatalogCredential> CatalogCredentials { get; set; }
+        public virtual DbSet<BUILDERInstance> BUILDERInstances { get; set; }
+        public virtual DbSet<CatalogItem> CatalogItems { get; set; }
+        public virtual DbSet<CatalogSystem> CatalogSystems { get; set; }
+        public virtual DbSet<Component> Components { get; set; }
+        public virtual DbSet<ComponentType> ComponentTypes { get; set; }
+        public virtual DbSet<MaterialCategory> MaterialCategories { get; set; }
+        public virtual DbSet<SubComponent> SubComponents { get; set; }
     }
 }

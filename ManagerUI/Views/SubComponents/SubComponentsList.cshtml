@@ -1,0 +1,53 @@
+﻿@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_MainApplication.cshtml";
+    ViewBag.Title = "SubComponents List";
+}
+
+<div class="col-10" style="font-size: 10px;">
+    <div class="row m-3">
+        <div class="col-12">
+            <h3>SubComponents</h3>
+        </div>
+    </div>
+    <hr/>
+    @(Html.Kendo().Grid<SubComponent>()
+            .Name("SubComponentsGrid")
+            .Columns(columns =>
+            {
+                columns.Bound(m => m.SubComponentId).Title("Id");
+                columns.Bound(m => m.SubComponentDescription).Title("SubComponent Description").ClientTemplate(Html.ActionLink("#=SubComponentDescription#", "Index", "SubComponents", new { subComponentId = "#=SubComponentId#"}, null).ToHtmlString());
+                columns.Bound(m => m.SubCompUnitId).Title("Unit Id");
+                columns.Command(command => { command.Edit().Text("Edit").UpdateText("Save"); });
+            })
+            .ToolBar(toolbar =>
+            {
+                toolbar.Create().Text("New Component");
+                toolbar.Excel();
+            })
+            .Editable(editable => editable.Mode(GridEditMode.InLine))
+            .Sortable(sortable =>
+            {
+                sortable.SortMode(GridSortMode.MultipleColumn);
+            })
+            .Filterable(filterable => filterable.Mode(GridFilterMode.Row))
+            .Scrollable()
+            .Pageable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Model(model => model.Id(p => p.SubComponentId))
+                .Read(read => read.Action("SubComponents_Read", "SubComponents"))
+                .Create(create => create.Action("SubComponents_Create", "SubComponents"))
+                .Destroy(destroy => destroy.Action("SubComponents_Delete", "SubComponents"))
+                .Update(update => update.Action("SubComponents_Update", "SubComponents"))
+                .PageSize(20)
+            )
+        .Excel(excel => excel
+            .FileName("Catalog SubComponent List.xlsx")
+            .Filterable(true)
+            .AllPages(true)
+            .ProxyURL(Url.Action("Excel_Export_List", "SubComponents"))
+        )
+    )
+</div>

@@ -1,0 +1,50 @@
+﻿@using CatalogData
+
+@{
+    Layout = "~/Views/Shared/_MainApplication.cshtml";
+    ViewBag.Title = "Material Categories List";
+}
+
+<div class="col-10" style="font-size: 10px;">
+    <div class="row m-3">
+        <div class="col-12">
+            <h3>Material Categories</h3>
+        </div>
+    </div>
+    <hr/>
+    @(Html.Kendo().Grid<MaterialCategory>()
+        .Name("MaterialCategoriesGrid")
+        .Columns( columns => {
+            columns.Bound(m => m.MatCatId).Title("Id");
+            columns.Bound(m => m.MatCatDescription).Title("Description").ClientTemplate(Html.ActionLink("#=MatCatDescription#", "Index", "MaterialCategories", new { matCatId = "#=MatCatId#" }, null).ToHtmlString());
+        })
+        .ToolBar(toolbar =>
+        {
+            toolbar.Create().Text("New Material Category");
+            toolbar.Excel();
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Sortable(sortable =>
+        {
+            sortable.SortMode(GridSortMode.MultipleColumn);
+        })
+        .Filterable(filterable => filterable.Mode(GridFilterMode.Row))
+        .Scrollable()
+        .Pageable()
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Model(model => model.Id(p => p.MatCatId))
+            .Read(read => read.Action("MaterialCategories_Read", "MaterialCategories"))
+            .Create(create => create.Action("MaterialCategories_Create", "MaterialCategories"))
+            .Destroy(destroy => destroy.Action("MaterialCategories_Delete", "MaterialCategories"))
+            .Update(update => update.Action("MaterialCategories_Update", "MaterialCategories"))
+            .PageSize(20)
+        )
+        .Excel(excel => excel
+            .FileName("Catalog Material Category List.xlsx")
+            .Filterable(true)
+            .AllPages(true)
+            .ProxyURL(Url.Action("Excel_Export_List", "MaterialCategories"))
+        )
+    )
+</div>

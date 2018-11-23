@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Systems - New";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2 m-3">
+            <a href="@Url.Action("SystemsList", "Systems")">
+                <input type="button" class="btn btn-outline-info" value="Back" />
+            </a>
+        </div>
+        <div class="col-8">
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="card">
+                        @using (Html.BeginForm("Systems_Create", "Systems", FormMethod.Post))
+                        {
+                        <div class="card-header">
+                            <h4>New Catalog System</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row m-1">
+                                <div class="col-4">
+                                    <strong>System Id</strong>
+                                </div>
+                                <div class="col-8">
+                                    @Html.Editor("SystemId", new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row m-1">
+                                <div class="col-4">
+                                    <strong>System Description</strong>
+                                </div>
+                                <div class="col-8">
+                                    @Html.Editor("SystemDescription", new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row m-1">
+                                <div class="col-4">
+                                    <strong>UII Code</strong>
+                                </div>
+                                <div class="col-8">
+                                    @Html.Editor("UiiCode", new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row m-1">
+                                <div class="col-4">
+                                    <strong>Is UII?</strong>
+                                </div>
+                                <div class="col-8">
+                                    @Html.CheckBox("IsUii", new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-outline-success" value="Create"/>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
