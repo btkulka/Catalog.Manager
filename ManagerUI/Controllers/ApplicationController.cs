@@ -19,6 +19,25 @@ namespace ManagerUI.Controllers
 
         public ActionResult ManageDeactivated_CatalogItems()
         {
+            var userId = User.Identity.GetUserId();
+            var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+            List<CatalogItem> deactivatedCatalogItems = new List<CatalogItem>();
+
+            // Retrieve all inactive Systems
+            var inactiveItems = db.CatalogItems.Where(w => (bool)w.IsActive == false && w.BUILDERInstanceId == creds.BUILDERInstanceId).ToList();
+
+            // Filter out records with one active record
+            foreach (CatalogItem item in inactiveItems) {
+                if (db.CatalogItems.Where(w => w.CMCID == item.CMCID && (bool)w.IsActive == true).Count() == 0) {
+                    // is this system already in the list?
+                    if (deactivatedCatalogItems.Where(w => w.ComponentId == item.CMCID).Count() == 0) {
+                        deactivatedCatalogItems.Add(item);
+                    }
+                }
+            }
+
+            ViewBag.DeactivatedCatalogItems = deactivatedCatalogItems;
+
             return View();
         }
 

@@ -51,12 +51,17 @@ namespace ManagerUI.Controllers
             var history = db.CatalogItems.Where(w => (bool)w.IsActive == false & w.CMCID == cmcId & w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(o => o.CreationDate).ToList();
 
             // get references
-
+            var comp = db.Components.Where(w => w.ComponentId == catalog.ComponentId & (bool)w.IsActive & creds.BUILDERInstanceId == w.BUILDERInstanceId).FirstOrDefault();
+            var matCat = db.MaterialCategories.Where(w => w.BUILDERInstanceId == creds.BUILDERInstanceId & (bool)w.IsActive & w.MatCatId == catalog.MaterialCategoryId).FirstOrDefault();
+            var compType = db.ComponentTypes.Where(w => w.BUILDERInstanceId == creds.BUILDERInstanceId & (bool)w.IsActive & w.CompTypeId == catalog.ComponentTypeId).FirstOrDefault();
 
             ItemIndexViewModel viewModel = new ItemIndexViewModel()
             {
                 CatalogItem = catalog,
-                History = history
+                History = history,
+                Component = comp,
+                MaterialCategory = matCat,
+                ComponentType = compType
             };
 
             return View(viewModel);
@@ -599,6 +604,26 @@ namespace ManagerUI.Controllers
             });
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CatalogItems_Deactivate(int? cmcid){
+            try {
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => w.AspNetUserId == userId & (bool)w.IsActive).FirstOrDefault();
+                var item = db.CatalogItems.Where(w => w.CMCID == cmcid && (bool)w.IsActive & w.BUILDERInstanceId == creds.BUILDERInstanceId).FirstOrDefault();
+                item.IsActive = false;
+
+                db.SaveChanges();
+
+                TempData["UserAlert"] = String.Format("Deactivated CatalogItem '{0}'. To reactivate or remove entirely, go to 'Manage Inactive Records'.", item.CMCID);
+                TempData["AlertType"] = "success";
+                return RedirectToAction("CatalogItemList", "Catalog");
+            }
+            catch (Exception ex) {
+                TempData["UserAlert"] = String.Format("Was unable to deactivate Catalog Item: {0}", ex.Message);
+                TempData["AlertType"] = "error";
+                return RedirectToAction("Index", "Catalog", new { cmcId = cmcid });
+            }
         }
 
         public ActionResult CatalogItems_Create(DataSourceRequest request)

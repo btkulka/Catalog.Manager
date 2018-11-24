@@ -163,7 +163,9 @@ namespace ManagerUI.Controllers
         {
             try
             {
-                var matCat = db.MaterialCategories.Where(w => w.MatCatId == matCatId && (bool)w.IsActive).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+                var matCat = db.MaterialCategories.Where(w => w.MatCatId == matCatId && (bool)w.IsActive && creds.BUILDERInstanceId == w.BUILDERInstanceId).FirstOrDefault();
                 matCat.IsActive = false;
 
                 db.SaveChanges();

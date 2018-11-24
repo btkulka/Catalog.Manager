@@ -127,7 +127,9 @@ namespace ManagerUI.Controllers
         {
             try
             {
-                var compType = db.ComponentTypes.Where(w => w.CompTypeId == compTypeId && (bool)w.IsActive).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+                var compType = db.ComponentTypes.Where(w => w.CompTypeId == compTypeId && (bool)w.IsActive & w.BUILDERInstanceId == creds.BUILDERInstanceId).FirstOrDefault();
                 compType.IsActive = false;
 
                 db.SaveChanges();

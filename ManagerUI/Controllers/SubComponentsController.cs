@@ -170,7 +170,9 @@ namespace ManagerUI.Controllers
         {
             try
             {
-                var subComp = db.SubComponents.Where(w => w.SubComponentId == subCompId && (bool)w.IsActive).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+                var subComp = db.SubComponents.Where(w => w.SubComponentId == subCompId && (bool)w.IsActive && w.BUILDERInstanceId == creds.BUILDERInstanceId).FirstOrDefault();
                 subComp.IsActive = false;
 
                 db.SaveChanges();

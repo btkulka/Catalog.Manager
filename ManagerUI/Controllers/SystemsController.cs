@@ -319,7 +319,9 @@ namespace ManagerUI.Controllers
         {
             try
             {
-                var system = db.CatalogSystems.Where(w => w.SystemId == sysId && (bool)w.IsActive).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+                var system = db.CatalogSystems.Where(w => w.SystemId == sysId && (bool)w.IsActive && creds.BUILDERInstanceId == w.BUILDERInstanceId).FirstOrDefault();
                 system.IsActive = false;
 
                 db.SaveChanges();

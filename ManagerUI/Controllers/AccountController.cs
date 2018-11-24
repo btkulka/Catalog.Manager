@@ -66,7 +66,7 @@ namespace ManagerUI.Controllers
         public ActionResult Logout()
         {
             SignInManager.AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("Login", "Account");
         }
 
         public async Task<ActionResult> Authenticate(FormCollection details)
@@ -96,7 +96,7 @@ namespace ManagerUI.Controllers
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            RedirectToAction("Index", "Catalog");
+                            RedirectToAction("CatalogItemList", "Catalog");
                             break;
                         case SignInStatus.Failure:
                             throw new Exception("Invalid username/password.");
@@ -106,7 +106,7 @@ namespace ManagerUI.Controllers
                             throw new Exception("User was unable to be signed in.");
                     }
                 }
-                return RedirectToAction("Index", "Catalog");
+                return RedirectToAction("CatalogItemList", "Catalog");
             }catch(Exception ex)
             {
                 // Error, return to login
