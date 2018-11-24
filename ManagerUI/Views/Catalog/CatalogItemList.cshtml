@@ -17,7 +17,7 @@
             .Name("CatalogItemGrid")
             .Columns(columns =>
             {
-                columns.Bound(c => c.CMCID).Title("CMCID").Width(100);
+                columns.Bound(c => c.CMCID).Title("CMCID").Width(100).ClientTemplate(@Html.ActionLink("#=CMCID#", "Index", "Catalog", new { cmcid = "#=CMCID#" }, null).ToHtmlString());
                 columns.Bound(c => c.ComponentName).ClientTemplate(@Html.ActionLink("#=ComponentName#", "Index", "Components", new { compId = "#=ComponentId#" }, null).ToHtmlString()).Title("Component");
                 columns.Bound(c => c.MaterialCategoryName).ClientTemplate(@Html.ActionLink("#=MaterialCategoryName#", "Index", "MaterialCategories", new { matCatId = "#=MaterialCategoryId#" }, null).ToHtmlString()).Title("Material Category");
                 columns.Bound(c => c.ComponentTypeDesc).ClientTemplate(@Html.ActionLink("#=ComponentTypeDesc#", "Index", "ComponentTypes", new { compTypeId = "#=ComponentTypeId#" }, null).ToHtmlString()).Title("Component Type");

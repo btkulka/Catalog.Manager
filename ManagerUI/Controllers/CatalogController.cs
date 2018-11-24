@@ -45,7 +45,21 @@ namespace ManagerUI.Controllers
 
         public ActionResult Index(int? cmcId)
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var creds = db.CatalogCredentials.Where(w => (bool)w.IsActive && w.AspNetUserId == userId).FirstOrDefault();
+            var catalog = db.CatalogItems.Where(w => (bool)w.IsActive & w.CMCID == cmcId & w.BUILDERInstanceId == creds.BUILDERInstanceId).FirstOrDefault();
+            var history = db.CatalogItems.Where(w => (bool)w.IsActive == false & w.CMCID == cmcId & w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(o => o.CreationDate).ToList();
+
+            // get references
+
+
+            ItemIndexViewModel viewModel = new ItemIndexViewModel()
+            {
+                CatalogItem = catalog,
+                History = history
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Resync(Guid? builderId)
