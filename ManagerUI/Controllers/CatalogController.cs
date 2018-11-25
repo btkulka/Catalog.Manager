@@ -626,6 +626,30 @@ namespace ManagerUI.Controllers
             }
         }
 
+        public ActionResult CatalogItems_RestoreDeactivated(int? cmcId)
+        {
+            try
+            {
+                // set the most recent iteration of the system to active
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => w.AspNetUserId == userId & (bool)w.IsActive).FirstOrDefault();
+                var item = db.CatalogItems.Where(w => w.CMCID == cmcId && w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(s => s.CreationDate).FirstOrDefault();
+                item.IsActive = true;
+
+                db.SaveChanges();
+
+                TempData["UserAlert"] = String.Format("Successfully restored Item #{0} to {1}.", item.CMCID, item.CreationDate.Value.ToShortDateString());
+                TempData["AlertType"] = "success";
+            }
+            catch (Exception ex)
+            {
+                TempData["UserAlert"] = String.Format("Was unable to restore the Catalog Item: {0}.", ex.Message);
+                TempData["AlertType"] = "error";
+            }
+
+            return RedirectToAction("ManageDeactivated_CatalogItems", "Application");
+        }
+
         public ActionResult CatalogItems_Create(DataSourceRequest request)
         {
             return null;

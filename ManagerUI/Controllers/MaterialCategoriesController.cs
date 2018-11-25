@@ -195,7 +195,9 @@ namespace ManagerUI.Controllers
             try
             {
                 // set the most recent iteration of the system to active
-                var matCat = db.MaterialCategories.Where(w => w.MatCatId == matCatId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => w.AspNetUserId == userId & (bool)w.IsActive).FirstOrDefault();
+                var matCat = db.MaterialCategories.Where(w => w.MatCatId == matCatId && w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
                 matCat.IsActive = true;
 
                 db.SaveChanges();

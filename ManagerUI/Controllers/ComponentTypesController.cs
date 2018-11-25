@@ -197,7 +197,9 @@ namespace ManagerUI.Controllers
             try
             {
                 // set the most recent iteration of the system to active
-                var compType = db.ComponentTypes.Where(w => w.CompTypeId == compTypeId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => w.AspNetUserId == userId & (bool)w.IsActive).FirstOrDefault();
+                var compType = db.ComponentTypes.Where(w => w.CompTypeId == compTypeId && w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
                 compType.IsActive = true;
 
                 db.SaveChanges();

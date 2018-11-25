@@ -201,8 +201,10 @@ namespace ManagerUI.Controllers
         {
             try
             {
-                // set the most recent iteration of the system to active
-                var subComp = db.SubComponents.Where(w => w.SubComponentId == subCompId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
+                // set the most recent iteration of the system to active// set the most recent iteration of the system to active
+                var userId = User.Identity.GetUserId();
+                var creds = db.CatalogCredentials.Where(w => w.AspNetUserId == userId & (bool)w.IsActive).FirstOrDefault();
+                var subComp = db.SubComponents.Where(w => w.SubComponentId == subCompId && w.BUILDERInstanceId == creds.BUILDERInstanceId).OrderByDescending(s => s.CreatedDate).FirstOrDefault();
                 subComp.IsActive = true;
 
                 db.SaveChanges();
